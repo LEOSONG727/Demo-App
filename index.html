@@ -1540,11 +1540,160 @@ body { font-family: var(--font-kr); color: var(--text); }
   font-size: 26px; font-weight: 900; font-family: var(--font-en); line-height: 1;
 }
 .s7b-stat-lbl { font-size: 11px; color: var(--text2); margin-top: 5px; }
+
+/* ══════════════════════════════════════════════════════════════
+   SAMSUNG TV SMARTHUB UI ELEMENTS
+═══════════════════════════════════════════════════════════════ */
+#tv-topbar {
+  position:absolute; top:0; left:0; right:0; height:76px; z-index:200;
+  background:linear-gradient(180deg,rgba(4,4,6,0.97) 0%,rgba(4,4,6,0.80) 100%);
+  display:flex; align-items:center; padding:0 60px; gap:0;
+  border-bottom:1px solid rgba(255,255,255,0.07);
+  opacity:0; pointer-events:none; transition:opacity 0.35s;
+}
+#tv-topbar.show { opacity:1; pointer-events:all; }
+.tvtb-brand { font-family:var(--font-en); font-size:22px; font-weight:700; letter-spacing:.14em; color:#fff; flex-shrink:0; margin-right:40px; }
+.tvtb-nav { display:flex; gap:2px; align-items:center; }
+.tvtb-btn {
+  display:flex; align-items:center; gap:8px; padding:9px 20px; border-radius:9px;
+  font-size:14px; font-weight:600; color:rgba(255,255,255,0.5); font-family:var(--font-kr);
+  cursor:pointer; transition:all 0.18s; position:relative;
+}
+.tvtb-btn .tb-ic { font-size:16px; }
+.tvtb-btn:hover { color:#fff; background:rgba(255,255,255,0.07); }
+.tvtb-btn.active { color:#fff; }
+.tvtb-btn.active::after { content:''; position:absolute; bottom:5px; left:20px; right:20px; height:2px; background:var(--blue-bright); border-radius:1px; }
+.tvtb-right { margin-left:auto; display:flex; align-items:center; gap:18px; }
+.tvtb-icons { display:flex; gap:12px; align-items:center; color:rgba(255,255,255,0.5); font-size:18px; }
+.tvtb-clock { font-family:var(--font-en); font-size:30px; font-weight:300; color:#fff; letter-spacing:-0.01em; min-width:80px; text-align:right; }
+
+#tv-appbar {
+  position:absolute; bottom:0; left:0; right:0; height:84px; z-index:200;
+  background:linear-gradient(0deg,rgba(4,4,6,0.97) 0%,rgba(4,4,6,0.72) 100%);
+  display:flex; align-items:center; justify-content:center; gap:4px;
+  border-top:1px solid rgba(255,255,255,0.06);
+  opacity:0; pointer-events:none; transition:opacity 0.4s 0.1s;
+}
+#tv-appbar.show { opacity:1; pointer-events:all; }
+.tv-ab-btn {
+  display:flex; flex-direction:column; align-items:center; gap:7px;
+  padding:9px 22px; border-radius:12px; cursor:pointer; transition:all 0.2s;
+  border:2px solid transparent; min-width:88px;
+}
+.tv-ab-btn:hover { background:rgba(255,255,255,0.06); border-color:rgba(255,255,255,0.1); }
+.tv-ab-btn.focused {
+  background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.4);
+  box-shadow:0 0 0 3px rgba(255,255,255,0.18), 0 10px 30px rgba(0,0,0,0.5);
+}
+.tv-ab-logo {
+  height:32px; border-radius:7px; display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:900; padding:0 12px; letter-spacing:.04em; min-width:58px;
+  transition:transform 0.2s;
+}
+.tv-ab-btn:hover .tv-ab-logo { transform:scale(1.08); }
+.tv-ab-btn.focused .tv-ab-logo { transform:scale(1.1); }
+.tv-ab-label { font-size:11px; color:rgba(255,255,255,0.4); font-weight:600; font-family:var(--font-en); }
+.tv-ab-btn.focused .tv-ab-label { color:rgba(255,255,255,0.9); }
+
+/* S5 gets topbar+appbar padding */
+#s5 { padding-top:90px !important; padding-bottom:96px !important; }
+/* S8 gets topbar padding */
+#s8 { padding-top:90px !important; }
+
+/* TV Content Rails (replaces s5 grid) */
+.s5-grid { display:none !important; }
+.s5-rails { display:flex; flex-direction:column; gap:22px; flex:1; min-height:0; overflow:hidden; padding-top:2px; }
+.tv-rail { display:flex; flex-direction:column; gap:13px; flex-shrink:0; }
+.tv-rail-hd { display:flex; align-items:center; padding:0 6px; gap:10px; }
+.tv-rail-hd h3 { font-size:22px; font-weight:800; letter-spacing:-0.02em; }
+.tv-rail-hd .rh-count { font-size:13px; color:var(--text3); font-family:var(--font-en); margin-left:4px; }
+.tv-rail-hd .rh-more { margin-left:auto; font-size:14px; font-weight:700; color:var(--blue-bright); cursor:pointer; opacity:0.8; }
+.tv-rail-cards { display:flex; gap:16px; padding:4px 6px 8px; overflow:visible; }
+.tv-card {
+  flex-shrink:0; width:240px; border-radius:13px; overflow:hidden;
+  background:var(--bg3); border:2.5px solid transparent;
+  cursor:pointer; transition:all 0.2s cubic-bezier(.4,0,.2,1); position:relative;
+}
+.tv-card.focused {
+  border-color:#fff;
+  box-shadow:0 0 0 4px rgba(255,255,255,0.5), 0 20px 48px rgba(0,0,0,0.75);
+  transform:scale(1.07) translateY(-8px); z-index:20;
+}
+.tv-card:not(.focused):hover {
+  border-color:rgba(255,255,255,0.28); transform:scale(1.025) translateY(-3px);
+}
+.tv-thumb {
+  width:100%; height:138px; position:relative; overflow:hidden;
+  background:var(--bg4); display:flex; align-items:flex-end;
+}
+.tv-thumb-grad { position:absolute; inset:0; background:linear-gradient(0deg,rgba(0,0,0,0.78) 0%,transparent 55%); z-index:1; }
+.tv-thumb-badge { position:absolute; top:10px; left:10px; z-index:3; }
+.tv-thumb-status { position:absolute; top:10px; right:10px; z-index:3; }
+.tv-thumb .cc-new-badge, .tv-thumb .cc-live-badge { position:relative; top:auto; right:auto; }
+.tv-thumb-foot { position:relative; z-index:2; padding:8px 12px; width:100%; }
+.tv-thumb-dur { font-size:11px; font-weight:700; color:rgba(255,255,255,0.72); font-family:var(--font-en); letter-spacing:.06em; }
+.tv-card-body { padding:10px 13px 13px; }
+.tv-card-title { font-size:15px; font-weight:800; line-height:1.3; color:#fff; }
+.tv-card-meta { font-size:12px; color:var(--text2); margin-top:4px; font-family:var(--font-en); }
+.tv-progress { height:3px; background:rgba(255,255,255,0.1); border-radius:2px; margin-top:8px; overflow:hidden; }
+.tv-progress-fill { height:100%; border-radius:2px; }
+
+/* S5 tabs - TV style */
+.s5-tab { background:rgba(255,255,255,0.04) !important; color:rgba(255,255,255,0.5) !important; border-color:rgba(255,255,255,0.1) !important; box-shadow:none !important; }
+.s5-tab.active, .s5-tab.focused { background:rgba(255,255,255,0.12) !important; color:#fff !important; border-color:rgba(255,255,255,0.3) !important; box-shadow:none !important; }
 </style>
 </head>
 <body>
 
 <div id="app">
+
+  <!-- Samsung TV SmartHub: Top Bar -->
+  <div id="tv-topbar">
+    <div class="tvtb-brand">SAMSUNG</div>
+    <nav class="tvtb-nav">
+      <div class="tvtb-btn active"><span class="tb-ic">⊞</span> 홈</div>
+      <div class="tvtb-btn"><span class="tb-ic">🔍</span> 검색</div>
+      <div class="tvtb-btn"><span class="tb-ic">🎬</span> 나의 편성표</div>
+      <div class="tvtb-btn"><span class="tb-ic">⊞</span> 앱스</div>
+      <div class="tvtb-btn"><span class="tb-ic">⌂</span> SmartThings</div>
+    </nav>
+    <div class="tvtb-right">
+      <div class="tvtb-icons"><span>📶</span><span>🔔</span><span>👤</span></div>
+      <div class="tvtb-clock" id="tv-clock">--:--</div>
+    </div>
+  </div>
+
+  <!-- Samsung TV SmartHub: Bottom App Bar -->
+  <div id="tv-appbar">
+    <div class="tv-ab-btn focused">
+      <div class="tv-ab-logo" style="background:#E50914;color:#fff;">NETFLIX</div>
+      <div class="tv-ab-label">Netflix</div>
+    </div>
+    <div class="tv-ab-btn">
+      <div class="tv-ab-logo" style="background:#1A56C4;color:#fff;">Disney+</div>
+      <div class="tv-ab-label">Disney+</div>
+    </div>
+    <div class="tv-ab-btn">
+      <div class="tv-ab-logo" style="background:#1a1a1a;color:#FF0000;border:1px solid #333;">▶ YouTube</div>
+      <div class="tv-ab-label">YouTube</div>
+    </div>
+    <div class="tv-ab-btn">
+      <div class="tv-ab-logo" style="background:#FF153C;color:#fff;">tving</div>
+      <div class="tv-ab-label">Tving</div>
+    </div>
+    <div class="tv-ab-btn">
+      <div class="tv-ab-logo" style="background:#1B3B8A;color:#fff;">KBO</div>
+      <div class="tv-ab-label">KBO</div>
+    </div>
+    <div class="tv-ab-btn">
+      <div class="tv-ab-logo" style="background:#fff;color:#050505;">TV+</div>
+      <div class="tv-ab-label">TV Plus</div>
+    </div>
+    <div class="tv-ab-btn">
+      <div class="tv-ab-logo" style="background:rgba(255,255,255,0.08);color:#fff;border:1px solid rgba(255,255,255,0.15);font-size:18px;">⋯</div>
+      <div class="tv-ab-label">앱스</div>
+    </div>
+  </div>
 
   <!-- ① INTRO ─────────────────────────────────────────────────── -->
   <section class="screen active" id="s1">
@@ -1759,6 +1908,189 @@ body { font-family: var(--font-kr); color: var(--text); }
       <div class="s5-tab" data-tab="sports">스포츠</div>
       <div class="s5-tab" data-tab="upcoming">공개예정</div>
     </div>
+    <div class="s5-rails" id="s5-rails">
+
+      <!-- Rail 1: 오늘 이어볼 콘텐츠 -->
+      <div class="tv-rail">
+        <div class="tv-rail-hd">
+          <h3>오늘 이어볼 콘텐츠</h3>
+          <span class="rh-count">AI 추천 · 오늘 20:00–22:30</span>
+          <span class="rh-more">더 보기 ›</span>
+        </div>
+        <div class="tv-rail-cards" id="rail1-cards">
+          <div class="tv-card focused" data-info="오징어 게임 S3|Netflix · 9회 완결 · 52분/회 · 총 7.8시간">
+            <div class="tv-thumb ct-squid">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-netflix">NETFLIX</span></div>
+              <div class="tv-thumb-status"><span class="cc-new-badge">완결</span></div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">9회 · 52분/회</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">오징어 게임 시즌 3</div>
+              <div class="tv-card-meta">오늘 20:00 · 빈지워칭 예정</div>
+              <div class="tv-progress"><div class="tv-progress-fill" style="width:0%;background:#E50914;"></div></div>
+            </div>
+          </div>
+          <div class="tv-card" data-info="흑백요리사 S2|Netflix · 연재중 · 65분/회 · 매주 목요일">
+            <div class="tv-thumb ct-chef">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-netflix">NETFLIX</span></div>
+              <div class="tv-thumb-status"><span class="cc-new-badge" style="background:#FF8C00;">연재중</span></div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">EP.6 · 65분</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">흑백요리사 S2</div>
+              <div class="tv-card-meta">목 22:00 · 신규 공개</div>
+            </div>
+          </div>
+          <div class="tv-card" data-info="안도르 시즌 2|Disney+ · 12회 완결 · 50분/회 · 총 10시간">
+            <div class="tv-thumb ct-andor">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-disney">Disney+</span></div>
+              <div class="tv-thumb-status"><span class="cc-new-badge">완결</span></div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">12회 · 50분/회</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">Andor 시즌 2</div>
+              <div class="tv-card-meta">일 오후 · 연속 시청 예정</div>
+            </div>
+          </div>
+          <div class="tv-card" data-info="환승연애 4|Tving · 8회 완결 · 70분/회">
+            <div class="tv-thumb ct-hwans">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-tving">tving</span></div>
+              <div class="tv-thumb-status"><span class="cc-new-badge">완결</span></div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">8회 · 70분/회</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">환승연애 4</div>
+              <div class="tv-card-meta">주말 22:00 예정</div>
+            </div>
+          </div>
+          <div class="tv-card" data-info="나폴리는 왜|Netflix · 공개예정 · 6월 15일">
+            <div class="tv-thumb ct-napo">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-netflix">NETFLIX</span></div>
+              <div class="tv-thumb-status"><span class="cc-new-badge" style="background:#6B4226;border:1px solid #8B6240;">D-12</span></div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">공개 예정</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">나폴리는 왜</div>
+              <div class="tv-card-meta">6월 15일 공개</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rail 2: KBO LIVE -->
+      <div class="tv-rail">
+        <div class="tv-rail-hd">
+          <h3>⚾ 이번 주 KBO LIVE</h3>
+          <span class="rh-count">삼성 라이온즈 3경기</span>
+          <span class="rh-more">더 보기 ›</span>
+        </div>
+        <div class="tv-rail-cards" id="rail2-cards">
+          <div class="tv-card" data-info="삼성 라이온즈 vs KIA|KBO · 오늘 화요일 19:00 · LIVE">
+            <div class="tv-thumb ct-kbo">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-kbo">KBO</span></div>
+              <div class="tv-thumb-status"><span class="cc-live-badge">LIVE</span></div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">화 19:00 ~</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">삼성 vs KIA</div>
+              <div class="tv-card-meta">오늘 · 오후 7시</div>
+            </div>
+          </div>
+          <div class="tv-card" data-info="삼성 라이온즈 vs LG|KBO · 목요일 19:00 · LIVE">
+            <div class="tv-thumb ct-kbo2">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-kbo">KBO</span></div>
+              <div class="tv-thumb-status"><span class="cc-live-badge">LIVE</span></div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">목 19:00 ~</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">삼성 vs LG</div>
+              <div class="tv-card-meta">목요일 · 오후 7시</div>
+            </div>
+          </div>
+          <div class="tv-card" data-info="삼성 라이온즈 vs 롯데 (홈)|KBO · 토요일 14:00 · 홈경기">
+            <div class="tv-thumb ct-kbo3">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-kbo">KBO</span></div>
+              <div class="tv-thumb-status"><span class="cc-live-badge">LIVE</span></div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">토 14:00 ~</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">삼성 vs 롯데 (홈)</div>
+              <div class="tv-card-meta">토요일 · 오후 2시</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Rail 3: YouTube Watch Later -->
+      <div class="tv-rail">
+        <div class="tv-rail-hd">
+          <h3>YouTube Watch Later</h3>
+          <span class="rh-count">18개 저장됨</span>
+          <span class="rh-more">더 보기 ›</span>
+        </div>
+        <div class="tv-rail-cards" id="rail3-cards">
+          <div class="tv-card" data-info="갤럭시 S25 언박싱|YouTube · 18분 · 구독 채널">
+            <div class="tv-thumb ct-yt1" style="align-items:center;justify-content:center;">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-youtube">▶</span></div>
+              <div style="font-size:38px;position:relative;z-index:2;">📱</div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">18분</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">갤럭시 S25 언박싱</div>
+              <div class="tv-card-meta">월 18:00 예정</div>
+            </div>
+          </div>
+          <div class="tv-card" data-info="2024 재테크 총정리|YouTube · 35분 · Watch Later">
+            <div class="tv-thumb ct-yt2" style="align-items:center;justify-content:center;">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-youtube">▶</span></div>
+              <div style="font-size:38px;position:relative;z-index:2;">📊</div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">35분</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">재테크 총정리</div>
+              <div class="tv-card-meta">수 18:00 예정</div>
+            </div>
+          </div>
+          <div class="tv-card" data-info="드라마 OST 모음|YouTube · 42분 · Watch Later">
+            <div class="tv-thumb ct-yt3" style="align-items:center;justify-content:center;">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-youtube">▶</span></div>
+              <div style="font-size:38px;position:relative;z-index:2;">🎵</div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">42분</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">드라마 OST 명장면</div>
+              <div class="tv-card-meta">금 18:00 예정</div>
+            </div>
+          </div>
+          <div class="tv-card" data-info="MrBeast 한국편|YouTube · 28분 · 신규">
+            <div class="tv-thumb ct-mrb" style="align-items:center;justify-content:center;">
+              <div class="tv-thumb-grad"></div>
+              <div class="tv-thumb-badge"><span class="platform-badge pb-youtube">▶</span></div>
+              <div class="tv-thumb-status"><span class="cc-new-badge">신규</span></div>
+              <div style="font-size:38px;position:relative;z-index:2;">🌍</div>
+              <div class="tv-thumb-foot"><div class="tv-thumb-dur">28분</div></div>
+            </div>
+            <div class="tv-card-body">
+              <div class="tv-card-title">MrBeast 한국 도전기</div>
+              <div class="tv-card-meta">신규 · 28분</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /.s5-rails -->
+
     <div class="s5-grid" id="s5-grid">
       <!-- Netflix content -->
       <div class="content-card focused" data-info="오징어 게임 S3|Netflix · 9회 완결 · 52분/회 · 총 7.8시간">
@@ -2671,8 +3003,9 @@ function prevScreen() { goToScreen(currentScreen - 1); }
 
 // ── SCREEN-SPECIFIC LOGIC ────────────────────────────────────
 function onScreenEnter(n) {
+  updateTVBars(n);
   if (n === 4) startConnectionAnim();
-  if (n === 5) initWalletNav();
+  if (n === 5) initRailNav();
   if (n === 7) initAgentAnim();
   if (n === 8) { initScheduleAnim(); initScheduleNav(); startReplanScenario(); }
 }
@@ -3155,11 +3488,11 @@ document.addEventListener('keydown', (e) => {
   const key = e.key;
 
   // Screen 5 navigation
-  if (currentScreen === 5 && walletNavActive) {
-    if (key === 'ArrowRight') { walletMove('right'); return; }
-    if (key === 'ArrowLeft')  { walletMove('left');  return; }
-    if (key === 'ArrowDown')  { walletMove('down');  return; }
-    if (key === 'ArrowUp')    { walletMove('up');    return; }
+  if (currentScreen === 5 && railNavActive) {
+    if (key === 'ArrowRight') { railMove('right'); return; }
+    if (key === 'ArrowLeft')  { railMove('left');  return; }
+    if (key === 'ArrowDown')  { railMove('down');  return; }
+    if (key === 'ArrowUp')    { railMove('up');    return; }
   }
 
   // Screen 8 navigation
@@ -3190,11 +3523,76 @@ document.addEventListener('keydown', (e) => {
   if (key === '0') goToScreen(10);
 });
 
+// ── SAMSUNG TV BARS ───────────────────────────────────────────
+const TV_BAR_SCREENS = [5, 8, 9];
+
+function updateTVBars(n) {
+  const topbar = document.getElementById('tv-topbar');
+  const appbar = document.getElementById('tv-appbar');
+  const show = TV_BAR_SCREENS.includes(n);
+  if (topbar) topbar.classList.toggle('show', show);
+  if (appbar) appbar.classList.toggle('show', n === 5);
+}
+
+function updateTVClock() {
+  const el = document.getElementById('tv-clock');
+  if (!el) return;
+  const now = new Date();
+  el.textContent = String(now.getHours()).padStart(2,'0') + ':' + String(now.getMinutes()).padStart(2,'0');
+}
+updateTVClock();
+setInterval(updateTVClock, 15000);
+
+// ── TV RAIL NAVIGATION ───────────────────────────────────────
+let railNavActive = false;
+let railIdx = 0;
+let railCardIdx = 0;
+
+function initRailNav() {
+  railNavActive = true;
+  railIdx = 0; railCardIdx = 0;
+  updateRailFocus();
+}
+
+function getRailCards(ri) {
+  const rails = document.querySelectorAll('#s5-rails .tv-rail');
+  if (!rails[ri]) return [];
+  return rails[ri].querySelectorAll('.tv-card');
+}
+
+function updateRailFocus() {
+  document.querySelectorAll('#s5-rails .tv-card').forEach(c => c.classList.remove('focused'));
+  const cards = getRailCards(railIdx);
+  const focused = cards[railCardIdx];
+  if (focused) {
+    focused.classList.add('focused');
+    const detail = document.getElementById('s5-detail');
+    const titleEl = document.getElementById('s5-detail-title');
+    const metaEl = document.getElementById('s5-detail-meta');
+    const info = focused.dataset.info || '';
+    const parts = info.split('|');
+    if (titleEl) titleEl.textContent = parts[0] || '';
+    if (metaEl) metaEl.textContent = parts[1] || '';
+    if (detail) detail.classList.add('show');
+  }
+}
+
+function railMove(dir) {
+  const totalRails = document.querySelectorAll('#s5-rails .tv-rail').length;
+  if (dir === 'up')    { railIdx = Math.max(railIdx - 1, 0); railCardIdx = 0; }
+  if (dir === 'down')  { railIdx = Math.min(railIdx + 1, totalRails - 1); railCardIdx = 0; }
+  if (dir === 'right') { const maxC = getRailCards(railIdx).length - 1; railCardIdx = Math.min(railCardIdx + 1, maxC); }
+  if (dir === 'left')  { railCardIdx = Math.max(railCardIdx - 1, 0); }
+  updateRailFocus();
+}
+
 // Also handle clicks for next screen
 document.addEventListener('click', (e) => {
   if (e.target.closest('#nav-hud') || e.target.closest('.s5-tab') ||
-      e.target.closest('.content-card') || e.target.closest('.sg-cell') ||
-      e.target.closest('.btn-primary') || e.target.closest('.watch-btn')) return;
+      e.target.closest('.content-card') || e.target.closest('.tv-card') ||
+      e.target.closest('.sg-cell') || e.target.closest('#tv-topbar') ||
+      e.target.closest('#tv-appbar') || e.target.closest('.btn-primary') ||
+      e.target.closest('.watch-btn')) return;
   nextScreen();
 });
 
