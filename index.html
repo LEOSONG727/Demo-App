@@ -112,6 +112,7 @@ body { font-family: var(--font-kr); color: var(--text); }
 .pb-disney  { background: var(--disney); color: #fff; }
 .pb-tving   { background: var(--tving); color: #fff; }
 .pb-kbo     { background: var(--kbo); color: #fff; }
+.pb-tvplus  { background: #fff; color: #050505; }
 
 .btn-primary {
   display: inline-flex; align-items: center; gap: 10px;
@@ -135,6 +136,63 @@ body { font-family: var(--font-kr); color: var(--text); }
 .section-subtitle {
   font-size: 17px; font-weight: 400; color: var(--text2); line-height: 1.6;
 }
+
+.oneui-rail {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 8px; border-radius: 100px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  backdrop-filter: blur(18px);
+}
+.oneui-chip {
+  display: inline-flex; align-items: center; justify-content: center; gap: 7px;
+  min-height: 34px; padding: 0 18px; border-radius: 100px;
+  font-size: 13px; font-weight: 800; color: var(--text2);
+  font-family: var(--font-en); letter-spacing: 0.01em;
+}
+.oneui-chip.active {
+  background: #fff; color: #050505;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.28);
+}
+.oneui-chip.samsung { color: var(--blue-bright); background: rgba(43,92,230,0.14); }
+.samsung-stack {
+  width: 100%; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px;
+  animation: fadeInUp 0.6s 0.65s both; opacity: 0;
+}
+.stack-card {
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 16px; padding: 15px 18px;
+}
+.stack-card .stack-kicker {
+  font-size: 11px; font-weight: 900; color: var(--blue-bright);
+  font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.stack-card .stack-title { margin-top: 6px; font-size: 17px; font-weight: 900; }
+.stack-card .stack-desc { margin-top: 5px; font-size: 12px; line-height: 1.45; color: var(--text2); }
+.privacy-strip {
+  display: grid; grid-template-columns: 1.4fr repeat(3, 1fr); gap: 12px;
+  padding: 14px; border-radius: 18px;
+  background: rgba(255,255,255,0.055);
+  border: 1px solid rgba(255,255,255,0.12);
+  animation: fadeIn 0.6s 0.9s both; opacity: 0;
+}
+.privacy-main {
+  padding: 14px 16px; border-radius: 14px;
+  background: linear-gradient(135deg, rgba(43,92,230,0.2), rgba(0,212,106,0.08));
+  border: 1px solid rgba(43,92,230,0.24);
+}
+.privacy-main strong { display: block; font-size: 17px; margin-bottom: 5px; }
+.privacy-main span { font-size: 13px; color: var(--text2); line-height: 1.5; }
+.privacy-item {
+  padding: 14px 16px; border-radius: 14px; background: rgba(10,10,10,0.45);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.privacy-item .pi-label {
+  font-size: 11px; font-weight: 900; color: var(--green);
+  font-family: var(--font-en); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.privacy-item .pi-text { margin-top: 7px; font-size: 13px; line-height: 1.45; color: var(--text2); }
 
 /* ── ANIMATIONS ──────────────────────────────────────────────── */
 @keyframes fadeInUp {
@@ -276,8 +334,8 @@ body { font-family: var(--font-kr); color: var(--text); }
 ══════════════════════════════════════════════════════════════════ */
 #s3 {
   background: var(--bg);
-  padding: 70px 100px;
-  display: flex; flex-direction: column; align-items: center; gap: 48px;
+  padding: 48px 86px;
+  display: flex; flex-direction: column; align-items: center; gap: 26px;
 }
 #s3 .title-area { text-align: center; animation: fadeInUp 0.7s both; }
 #s3 .title-area h2 { font-size: 48px; font-weight: 900; letter-spacing: -0.03em; }
@@ -288,7 +346,7 @@ body { font-family: var(--font-kr); color: var(--text); }
 }
 .compare-col {
   background: var(--bg3); border-radius: 20px;
-  padding: 40px 36px; border: 1px solid var(--border);
+  padding: 30px 32px; border: 1px solid var(--border);
 }
 .compare-col.left { animation: slideRight 0.7s 0.2s both; opacity: 0; }
 .compare-col.right {
@@ -304,7 +362,7 @@ body { font-family: var(--font-kr); color: var(--text); }
 .compare-col.right .compare-title { color: #6B9FFF; }
 .compare-item {
   display: flex; align-items: flex-start; gap: 14px;
-  margin-bottom: 22px; font-size: 17px; line-height: 1.5;
+  margin-bottom: 15px; font-size: 16px; line-height: 1.45;
 }
 .compare-col.left .compare-item { color: var(--text2); }
 .compare-col.right .compare-item { color: rgba(255,255,255,0.9); }
@@ -335,14 +393,35 @@ body { font-family: var(--font-kr); color: var(--text); }
   gap: 0;
 }
 #s4 .s4-title {
-  font-size: 36px; font-weight: 300; color: var(--text2); letter-spacing: -0.01em;
+  font-size: 42px; font-weight: 300; color: var(--text2); letter-spacing: -0.02em;
   margin-bottom: 8px; animation: fadeIn 0.6s both;
 }
 #s4 .s4-title strong { font-weight: 900; color: var(--text); }
 #s4 .s4-subtitle {
-  font-size: 17px; color: var(--text3); margin-bottom: 64px;
+  font-size: 19px; color: var(--text2); margin-bottom: 34px; line-height: 1.55; text-align: center;
   animation: fadeIn 0.6s 0.2s both;
 }
+.discovery-shift {
+  display: grid; grid-template-columns: 1fr 44px 1fr; gap: 14px; align-items: stretch;
+  width: 860px; margin-bottom: 38px;
+  animation: fadeInUp 0.6s 0.35s both; opacity: 0;
+}
+.shift-card {
+  padding: 16px 20px; border-radius: 16px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.11);
+}
+.shift-card.after {
+  background: linear-gradient(135deg, rgba(43,92,230,0.3), rgba(0,212,106,0.09));
+  border-color: rgba(77,127,255,0.32);
+}
+.shift-kicker {
+  font-size: 10px; font-weight: 900; color: var(--text3);
+  font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.shift-card.after .shift-kicker { color: #9fbaff; }
+.shift-title { margin-top: 7px; font-size: 18px; font-weight: 900; }
+.shift-desc { margin-top: 5px; font-size: 13px; color: var(--text2); line-height: 1.45; }
+.shift-arrow { display: flex; align-items: center; justify-content: center; color: var(--blue-bright); font-size: 28px; }
 .connection-stage {
   position: relative; width: 900px; height: 440px;
 }
@@ -365,8 +444,8 @@ body { font-family: var(--font-kr); color: var(--text); }
 .tv-center .cw-label { font-size: 11px; font-weight: 700; color: var(--blue-bright); letter-spacing: 0.08em; }
 
 .platform-node {
-  position: absolute; display: flex; flex-direction: column; align-items: center; gap: 8px;
-  opacity: 0;
+  position: absolute; width: 150px; display: flex; flex-direction: column; align-items: center; gap: 8px;
+  opacity: 0; z-index: 8;
 }
 .platform-node .pname {
   font-size: 13px; font-weight: 700; font-family: var(--font-en);
@@ -392,14 +471,16 @@ body { font-family: var(--font-kr); color: var(--text); }
 .pi-kbo     { background: linear-gradient(135deg, #1B3B8A, #0D2055); color: #fff; }
 
 /* SVG connection lines */
-.conn-svg { position: absolute; inset: 0; pointer-events: none; }
+.conn-svg { position: absolute; inset: 0; pointer-events: none; z-index: 1; }
 .conn-line {
   stroke: var(--blue-light); stroke-width: 1.5; fill: none;
-  stroke-dasharray: 200; stroke-dashoffset: 200;
+  stroke-dasharray: 420; stroke-dashoffset: 420;
   opacity: 0;
   transition: stroke-dashoffset 0.6s ease, opacity 0.3s;
 }
 .conn-line.drawn { stroke-dashoffset: 0; opacity: 0.7; }
+.conn-dot { fill: var(--green); opacity: 0; transition: opacity 0.25s; }
+.conn-dot.on { opacity: 1; }
 
 .s4-total {
   margin-top: 48px; text-align: center;
@@ -638,28 +719,49 @@ body { font-family: var(--font-kr); color: var(--text); }
    SCREEN 8: WEEKLY SCHEDULE (편성표)
 ══════════════════════════════════════════════════════════════════ */
 #s8 {
-  background: var(--bg);
-  padding: 48px 72px 60px;
-  display: flex; flex-direction: column; gap: 28px;
+  background:
+    radial-gradient(ellipse at 75% 18%, rgba(43,92,230,0.18) 0%, transparent 34%),
+    linear-gradient(180deg, #050505 0%, #0b0b0d 100%);
+  padding: 40px 56px 52px;
+  display: flex; flex-direction: column; gap: 18px;
 }
 .s8-header {
   display: flex; justify-content: space-between; align-items: flex-end;
   animation: fadeInUp 0.6s both;
 }
-.s8-header h2 { font-size: 38px; font-weight: 900; letter-spacing: -0.03em; }
+.s8-header h2 { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; }
 .s8-header .week-range { font-size: 16px; color: var(--text2); font-family: var(--font-en); }
 .s8-header .agent-badge {
   display: flex; align-items: center; gap: 8px;
-  background: rgba(20,40,160,0.25); border: 1px solid var(--blue-light);
+  background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14);
   padding: 8px 18px; border-radius: 100px;
-  font-size: 14px; font-weight: 700; color: var(--blue-bright);
+  font-size: 14px; font-weight: 800; color: #fff;
 }
 .s8-header .agent-badge .dot {
   width: 7px; height: 7px; border-radius: 50%; background: var(--blue-bright);
   animation: blink 1.5s infinite;
 }
 
-.schedule-grid-wrap { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.s8-hub-nav {
+  display: flex; justify-content: space-between; align-items: center;
+  animation: fadeIn 0.45s 0.15s both; opacity: 0;
+}
+.s8-hub-nav .oneui-rail { background: rgba(255,255,255,0.075); }
+.s8-device-status {
+  display: flex; align-items: center; gap: 10px; color: var(--text2);
+  font-size: 12px; font-weight: 700;
+}
+.status-pill {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 7px 12px; border-radius: 100px;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+}
+.status-pill.secure { color: var(--green); }
+.s8-body {
+  flex: 1; min-height: 0;
+  display: grid; grid-template-columns: minmax(0, 1fr) 396px; gap: 18px;
+}
+.schedule-grid-wrap { min-width: 0; display: flex; flex-direction: column; gap: 8px; }
 .sg-header {
   display: grid; grid-template-columns: 90px repeat(7, 1fr); gap: 6px;
 }
@@ -683,16 +785,22 @@ body { font-family: var(--font-kr); color: var(--text); }
   color: var(--text3); font-family: var(--font-en); white-space: nowrap;
 }
 .sg-cell {
-  border-radius: 10px; padding: 10px 12px;
+  border-radius: 12px; padding: 10px 12px;
   display: flex; flex-direction: column; justify-content: space-between;
-  min-height: 88px; cursor: pointer;
+  min-height: 82px; cursor: pointer;
   border: 2px solid transparent;
   transition: all 0.18s;
   position: relative; overflow: hidden;
 }
+.sg-cell::after {
+  content: attr(data-fit);
+  position: absolute; top: 8px; right: 8px;
+  font-size: 9px; font-weight: 900; color: rgba(255,255,255,0.7);
+  font-family: var(--font-en); letter-spacing: 0.06em;
+}
 .sg-cell:hover, .sg-cell.focused {
   border-color: var(--blue-bright);
-  box-shadow: var(--focus-ring);
+  box-shadow: 0 0 0 3px rgba(77,127,255,0.95), 0 0 34px rgba(43,92,230,0.5);
   transform: scale(1.01);
   z-index: 10;
 }
@@ -704,6 +812,16 @@ body { font-family: var(--font-kr); color: var(--text); }
 .sg-cell.disney-cell { background: linear-gradient(135deg, #0D1E55, #060F2A); }
 .sg-cell.yt-cell   { background: linear-gradient(135deg, #1A0000, #0D0000); }
 .sg-cell.tving-cell { background: linear-gradient(135deg, #400010, #200008); }
+.sg-cell.tvplus-cell {
+  background: linear-gradient(135deg, #F5F7FF, #BFD2FF);
+  color: #050505;
+  border-color: rgba(255,255,255,0.42);
+}
+.sg-cell.tvplus-cell .sc-title,
+.sg-cell.tvplus-cell .sc-meta { color: #050505; }
+.sg-cell.replanned {
+  animation: pulse-glow 1.6s ease-in-out 2;
+}
 
 .sc-platform { margin-bottom: 4px; }
 .sc-title { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; }
@@ -715,8 +833,111 @@ body { font-family: var(--font-kr); color: var(--text); }
 }
 .sc-live::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #FF1744; animation: blink 1s infinite; display: block; }
 
+.s8-curation-panel {
+  min-height: 0; display: flex; flex-direction: column; gap: 12px;
+  padding: 16px; border-radius: 20px;
+  background: rgba(255,255,255,0.075);
+  border: 1px solid rgba(255,255,255,0.13);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+  animation: slideLeft 0.55s 0.25s both; opacity: 0;
+}
+.curation-title {
+  display: flex; justify-content: space-between; align-items: center;
+}
+.curation-title h3 { font-size: 19px; font-weight: 900; letter-spacing: -0.02em; }
+.curation-title .mode {
+  padding: 5px 10px; border-radius: 100px;
+  background: rgba(0,212,106,0.12); color: var(--green);
+  border: 1px solid rgba(0,212,106,0.22);
+  font-size: 11px; font-weight: 900; font-family: var(--font-en);
+}
+.context-card, .why-card, .control-card {
+  padding: 14px; border-radius: 15px;
+  background: rgba(0,0,0,0.32); border: 1px solid rgba(255,255,255,0.08);
+}
+.context-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.context-item {
+  padding: 11px 12px; border-radius: 12px; background: rgba(255,255,255,0.055);
+}
+.context-item .ci-label {
+  font-size: 10px; font-weight: 900; color: var(--text3);
+  font-family: var(--font-en); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.context-item .ci-value { margin-top: 6px; font-size: 13px; font-weight: 800; color: var(--text); line-height: 1.35; }
+.pref-card {
+  padding: 14px; border-radius: 15px;
+  background: linear-gradient(145deg, rgba(43,92,230,0.18), rgba(255,255,255,0.055));
+  border: 1px solid rgba(77,127,255,0.2);
+}
+.pref-head { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; }
+.pref-head .pref-title { font-size: 13px; font-weight: 900; color: var(--text); }
+.pref-head .pref-score { font-size: 28px; font-weight: 900; font-family: var(--font-en); color: var(--blue-bright); }
+.pref-track { height: 8px; border-radius: 100px; background: rgba(255,255,255,0.12); overflow: hidden; margin: 10px 0 9px; }
+.pref-fill {
+  height: 100%; width: 0%; border-radius: 100px;
+  background: linear-gradient(90deg, var(--blue-light), var(--green));
+  transition: width 0.35s ease;
+}
+.pref-desc { font-size: 12px; color: var(--text2); line-height: 1.5; }
+.why-card .why-label, .control-card .why-label {
+  font-size: 10px; font-weight: 900; color: var(--text3);
+  font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase;
+  margin-bottom: 9px;
+}
+.why-card h4 { font-size: 16px; font-weight: 900; margin-bottom: 8px; }
+.why-card p { font-size: 13px; line-height: 1.58; color: var(--text2); }
+.control-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.control-pill {
+  min-height: 38px; border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.1);
+  font-size: 12px; font-weight: 800; color: var(--text2);
+}
+.control-pill.primary {
+  grid-column: 1 / -1; background: #fff; color: #050505;
+}
+.replan-card {
+  padding: 13px 14px; border-radius: 15px;
+  background: rgba(43,92,230,0.12);
+  border: 1px solid rgba(77,127,255,0.22);
+}
+.replan-top { display: flex; justify-content: space-between; align-items: center; margin-bottom: 9px; }
+.replan-top .why-label { margin-bottom: 0; }
+.replan-state {
+  font-size: 11px; font-weight: 900; color: var(--blue-bright);
+  font-family: var(--font-en); letter-spacing: 0.05em;
+}
+.replan-flow { display: grid; grid-template-columns: 1fr 18px 1fr 18px 1fr; align-items: stretch; gap: 6px; }
+.replan-step {
+  min-height: 56px; padding: 9px 10px; border-radius: 11px;
+  background: rgba(0,0,0,0.25); border: 1px solid rgba(255,255,255,0.08);
+  opacity: 0.48; transition: opacity 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+}
+.replan-step.on {
+  opacity: 1; background: rgba(255,255,255,0.08);
+  border-color: rgba(77,127,255,0.34);
+}
+.replan-step .rs-kicker {
+  font-size: 9px; font-weight: 900; font-family: var(--font-en);
+  letter-spacing: 0.08em; color: var(--text3); text-transform: uppercase;
+}
+.replan-step .rs-text { margin-top: 5px; font-size: 11px; font-weight: 800; line-height: 1.35; color: var(--text); }
+.replan-arrow { display: flex; align-items: center; justify-content: center; color: var(--text3); font-size: 15px; }
+.replan-note {
+  margin-top: 9px; font-size: 11px; line-height: 1.45; color: var(--text2);
+}
+.policy-mini {
+  margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 8px;
+}
+.policy-mini div {
+  padding: 10px 11px; border-radius: 12px;
+  background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.08);
+  font-size: 11px; line-height: 1.4; color: var(--text2);
+}
+.policy-mini strong { display: block; color: var(--green); font-size: 10px; font-family: var(--font-en); letter-spacing: 0.08em; margin-bottom: 4px; }
+
 .s8-detail-bar {
-  height: 64px; background: var(--bg3); border-radius: 12px;
+  height: 70px; background: rgba(255,255,255,0.075); border-radius: 16px;
   padding: 0 24px; border: 1px solid var(--border);
   display: flex; align-items: center; gap: 16px;
   transition: opacity 0.3s;
@@ -858,17 +1079,94 @@ body { font-family: var(--font-kr); color: var(--text); }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SCREEN 11: EVOLUTION
+   SCREEN 11: EXECUTIVE VIEW
 ══════════════════════════════════════════════════════════════════ */
 #s11 {
-  background: radial-gradient(ellipse at 60% 40%, #0A1535 0%, #080808 70%);
-  padding: 70px 100px;
-  display: flex; flex-direction: column; align-items: center; gap: 52px;
+  background:
+    radial-gradient(ellipse at 20% 16%, rgba(77,127,255,0.22) 0%, transparent 34%),
+    radial-gradient(ellipse at 85% 90%, rgba(0,212,106,0.12) 0%, transparent 36%),
+    #070707;
+  padding: 46px 68px 58px;
+  display: flex; flex-direction: column; gap: 24px;
 }
-#s11 .s11-header { text-align: center; animation: fadeInUp 0.7s both; }
-#s11 .s11-header .label-xs { margin-bottom: 14px; display: block; }
-#s11 .s11-header h2 { font-size: 52px; font-weight: 900; letter-spacing: -0.03em; }
-#s11 .s11-header p { font-size: 20px; color: var(--text2); margin-top: 12px; }
+#s11 .s11-header { display: flex; justify-content: space-between; align-items: flex-end; animation: fadeInUp 0.7s both; }
+#s11 .s11-header .label-xs { margin-bottom: 10px; display: block; }
+#s11 .s11-header h2 { font-size: 42px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.14; }
+#s11 .s11-header p { font-size: 17px; color: var(--text2); margin-top: 10px; line-height: 1.55; max-width: 880px; }
+.exec-badge {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 190px; height: 42px; border-radius: 100px;
+  background: #fff; color: #050505; font-size: 13px; font-weight: 900;
+}
+.exec-dashboard {
+  flex: 1; min-height: 0;
+  display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 18px;
+}
+.exec-panel {
+  border-radius: 22px; padding: 22px;
+  background: rgba(255,255,255,0.065);
+  border: 1px solid rgba(255,255,255,0.12);
+  display: flex; flex-direction: column; gap: 14px;
+  animation: fadeInUp 0.6s both; opacity: 0;
+}
+.exec-panel:nth-child(1) { animation-delay: 0.15s; }
+.exec-panel:nth-child(2) { animation-delay: 0.3s; }
+.exec-panel-title {
+  display: flex; justify-content: space-between; align-items: baseline;
+}
+.exec-panel-title h3 { font-size: 22px; font-weight: 900; letter-spacing: -0.02em; }
+.exec-panel-title span {
+  font-size: 11px; font-weight: 900; color: var(--blue-bright);
+  font-family: var(--font-en); letter-spacing: 0.08em; text-transform: uppercase;
+}
+.consumer-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+.consumer-card {
+  min-height: 164px; padding: 17px; border-radius: 16px;
+  background: rgba(0,0,0,0.32); border: 1px solid rgba(255,255,255,0.08);
+}
+.consumer-card .cc-icon { font-size: 26px; margin-bottom: 10px; }
+.consumer-card .cc-title { font-size: 16px; font-weight: 900; }
+.consumer-card .cc-body { margin-top: 8px; font-size: 12px; line-height: 1.55; color: var(--text2); }
+.journey-strip {
+  margin-top: auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px;
+}
+.journey-step {
+  padding: 13px 14px; border-radius: 14px; background: rgba(43,92,230,0.12);
+  border: 1px solid rgba(77,127,255,0.18);
+}
+.journey-step .js-num {
+  font-size: 11px; font-weight: 900; color: var(--blue-bright);
+  font-family: var(--font-en); letter-spacing: 0.08em;
+}
+.journey-step .js-text { margin-top: 7px; font-size: 13px; font-weight: 800; line-height: 1.35; }
+.kpi-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+.kpi-card {
+  padding: 17px; border-radius: 16px;
+  background: rgba(0,0,0,0.32); border: 1px solid rgba(255,255,255,0.08);
+}
+.kpi-card .kpi-num { font-size: 34px; font-weight: 900; font-family: var(--font-en); color: var(--green); line-height: 1; }
+.kpi-card .kpi-label { margin-top: 7px; font-size: 13px; font-weight: 900; }
+.kpi-card .kpi-note { margin-top: 5px; font-size: 11px; line-height: 1.45; color: var(--text3); }
+.strategy-lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.strategy-lane {
+  padding: 15px; border-radius: 15px;
+  background: rgba(255,255,255,0.055); border: 1px solid rgba(255,255,255,0.09);
+}
+.strategy-lane strong { display: block; font-size: 14px; margin-bottom: 7px; }
+.strategy-lane span { font-size: 12px; color: var(--text2); line-height: 1.5; }
+.decision-bar {
+  display: grid; grid-template-columns: 1.1fr 1fr 1fr; gap: 12px;
+  animation: fadeIn 0.7s 0.9s both; opacity: 0;
+}
+.decision-item {
+  padding: 16px 18px; border-radius: 16px;
+  background: rgba(255,255,255,0.075); border: 1px solid rgba(255,255,255,0.12);
+}
+.decision-item .di-label {
+  font-size: 10px; font-weight: 900; color: var(--text3);
+  font-family: var(--font-en); letter-spacing: 0.1em; text-transform: uppercase;
+}
+.decision-item .di-text { margin-top: 7px; font-size: 15px; font-weight: 800; line-height: 1.45; }
 
 .evolution-timeline {
   width: 100%; display: flex; align-items: flex-start; gap: 0;
@@ -1096,6 +1394,12 @@ body { font-family: var(--font-kr); color: var(--text); }
 .dqcs-result { font-size: 12px; font-weight: 700; color: var(--text3); padding-top: 8px; border-top: 1px solid var(--border); margin-top: 6px; }
 .dqc-step.now .dqcs-result { color: var(--green); border-color: rgba(0,212,106,0.2); }
 .dqc-sep { display: flex; align-items: center; padding: 0 4px; font-size: 18px; color: var(--text3); flex-shrink: 0; }
+#s6 .privacy-strip { grid-template-columns: 1.35fr repeat(3, 1fr); padding: 10px; gap: 10px; }
+#s6 .privacy-main { padding: 12px 14px; }
+#s6 .privacy-main strong { font-size: 15px; }
+#s6 .privacy-main span { font-size: 12px; }
+#s6 .privacy-item { padding: 12px 13px; }
+#s6 .privacy-item .pi-text { font-size: 12px; }
 
 /* ══════════════════════════════════════════════════════════════
    S7 REVAMP: AGENT LIVE SCHEDULE BUILDER
@@ -1248,7 +1552,7 @@ body { font-family: var(--font-kr); color: var(--text); }
       <div class="samsung-logo" style="font-size:48px;letter-spacing:0.14em;">SAMSUNG</div>
       <div class="product-name" style="margin-top:16px;">Contents Wallet</div>
       <div class="divider"></div>
-      <div class="tagline">나만의 TV 편성표, AI 에이전트가 설계합니다</div>
+      <div class="tagline">찾지 말고, 내 시간표에 맞춰 자연스럽게 보세요</div>
     </div>
     <div class="start-hint">ENTER 키로 시작하기</div>
   </section>
@@ -1305,9 +1609,15 @@ body { font-family: var(--font-kr); color: var(--text); }
   <!-- ③ SAMSUNG ADVANTAGE ─────────────────────────────────────── -->
   <section class="screen" id="s3">
     <div style="text-align:center;animation:fadeInUp 0.7s both;">
-      <span class="label-xs">Samsung TV's Unique Position</span>
+      <div class="oneui-rail" style="margin-bottom:18px;">
+        <span class="oneui-chip active">For You</span>
+        <span class="oneui-chip">Live</span>
+        <span class="oneui-chip">Apps</span>
+        <span class="oneui-chip samsung">SmartThings</span>
+      </div>
+      <span class="label-xs">One UI Tizen · SmartThings · Knox</span>
       <h2 class="section-title" style="font-size:50px;margin-top:12px;">왜 삼성 TV만이 할 수 있는가</h2>
-      <p class="section-subtitle" style="margin-top:10px;">OTT 플랫폼은 자사 콘텐츠만 볼 수 있지만,<br>삼성 TV는 모든 플랫폼의 위에 있습니다.</p>
+      <p class="section-subtitle" style="margin-top:10px;">삼성 TV는 앱을 실행하는 화면이 아니라,<br>엔터테인먼트와 스마트 홈, 라이프스타일 맥락이 만나는 허브입니다.</p>
     </div>
     <div class="compare-grid" style="margin-top:44px;">
       <div class="compare-col left">
@@ -1335,21 +1645,62 @@ body { font-family: var(--font-kr); color: var(--text); }
         <div class="compare-item"><span class="cicon">✓</span> 사용자는 더 이상 탐색하지 않아도 됨</div>
       </div>
     </div>
+    <div class="samsung-stack">
+      <div class="stack-card">
+        <div class="stack-kicker">TV Home</div>
+        <div class="stack-title">시청 접점</div>
+        <div class="stack-desc">앱 실행, 라이브, 찜한 콘텐츠가 모이는 첫 화면에서 바로 편성 제안</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-kicker">Galaxy</div>
+        <div class="stack-title">생활 리듬</div>
+        <div class="stack-desc">기상, 귀가, 취침 패턴을 원본이 아닌 요약 신호로 변환</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-kicker">SmartThings</div>
+        <div class="stack-title">거실 상황</div>
+        <div class="stack-desc">조명, 홈 Wi-Fi, TV 사용 시간으로 실제 시청 가능한 순간 감지</div>
+      </div>
+      <div class="stack-card">
+        <div class="stack-kicker">Knox</div>
+        <div class="stack-title">신뢰 기반</div>
+        <div class="stack-desc">옵트인 동의와 온디바이스 분석을 전제로 개인화 경험 제공</div>
+      </div>
+    </div>
   </section>
 
   <!-- ④ PLATFORM CONNECTION ─────────────────────────────────── -->
   <section class="screen" id="s4">
-    <div class="s4-title"><strong>삼성 TV</strong>가 모든 플랫폼을 연결합니다</div>
-    <div class="s4-subtitle">플랫폼별 콘텐츠 데이터를 하나의 Wallet으로</div>
+    <div class="s4-title"><strong>Discovery</strong>가 편성 경험으로 바뀝니다</div>
+    <div class="s4-subtitle">사용자는 더 이상 콘텐츠를 찾아다니지 않습니다.<br>내 시간표에 맞춰 TV가 준비한 순서대로 자연스럽게 보기만 하면 됩니다.</div>
+
+    <div class="discovery-shift">
+      <div class="shift-card">
+        <div class="shift-kicker">Before · Search & Decide</div>
+        <div class="shift-title">앱을 열고, 찾고, 고르고, 포기</div>
+        <div class="shift-desc">플랫폼마다 흩어진 찜 목록과 추천 탭 사이를 사용자가 직접 이동합니다.</div>
+      </div>
+      <div class="shift-arrow">→</div>
+      <div class="shift-card after">
+        <div class="shift-kicker">After · Scheduled Flow</div>
+        <div class="shift-title">시간표가 먼저 준비되고, 사용자는 보기만 함</div>
+        <div class="shift-desc">TV Home이 오늘의 여유 시간에 맞춰 라이브, 이어보기, 짧은 콘텐츠를 배치합니다.</div>
+      </div>
+    </div>
 
     <div class="connection-stage">
       <!-- SVG Lines -->
       <svg class="conn-svg" viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg">
-        <line id="l-netflix" x1="120" y1="120" x2="450" y2="220" class="conn-line"/>
-        <line id="l-youtube" x1="120" y1="280" x2="450" y2="220" class="conn-line"/>
-        <line id="l-disney"  x1="780" y1="120" x2="450" y2="220" class="conn-line"/>
-        <line id="l-tving"   x1="780" y1="280" x2="450" y2="220" class="conn-line"/>
-        <line id="l-kbo"     x1="450" y1="30"  x2="450" y2="180" class="conn-line"/>
+        <line id="l-netflix" x1="135" y1="116" x2="350" y2="190" class="conn-line"/>
+        <line id="l-youtube" x1="135" y1="266" x2="350" y2="250" class="conn-line"/>
+        <line id="l-disney"  x1="765" y1="116" x2="550" y2="190" class="conn-line"/>
+        <line id="l-tving"   x1="765" y1="266" x2="550" y2="250" class="conn-line"/>
+        <line id="l-kbo"     x1="450" y1="36"  x2="450" y2="150" class="conn-line"/>
+        <circle id="d-netflix" class="conn-dot" cx="350" cy="190" r="4"/>
+        <circle id="d-youtube" class="conn-dot" cx="350" cy="250" r="4"/>
+        <circle id="d-disney"  class="conn-dot" cx="550" cy="190" r="4"/>
+        <circle id="d-tving"   class="conn-dot" cx="550" cy="250" r="4"/>
+        <circle id="d-kbo"     class="conn-dot" cx="450" cy="150" r="4"/>
       </svg>
 
       <!-- TV Center -->
@@ -1369,12 +1720,12 @@ body { font-family: var(--font-kr); color: var(--text); }
         <div class="pname">YouTube</div>
         <div class="pcount">Watch Later 18개 ✓</div>
       </div>
-      <div class="platform-node" id="pn-disney" style="right:60px;top:80px;">
+      <div class="platform-node" id="pn-disney" style="left:690px;top:80px;">
         <div class="platform-icon pi-disney">Disney+</div>
         <div class="pname">Disney+</div>
         <div class="pcount">나중에 볼 6개 ✓</div>
       </div>
-      <div class="platform-node" id="pn-tving" style="right:60px;top:230px;">
+      <div class="platform-node" id="pn-tving" style="left:690px;top:230px;">
         <div class="platform-icon pi-tving">tving</div>
         <div class="pname">Tving</div>
         <div class="pcount">찜 4개 ✓</div>
@@ -1387,7 +1738,7 @@ body { font-family: var(--font-kr); color: var(--text); }
     </div>
 
     <div class="s4-total" id="s4-total">
-      총 <strong class="green-num">51개</strong> 콘텐츠 수집 완료 &nbsp;·&nbsp; <strong>Samsung Contents Wallet</strong> 준비됨
+      총 <strong class="green-num">51개</strong> 콘텐츠가 하나의 시간표로 정리됨 &nbsp;·&nbsp; <strong>찾는 경험 → 보는 경험</strong>
     </div>
   </section>
 
@@ -1591,6 +1942,25 @@ body { font-family: var(--font-kr); color: var(--text); }
       </div>
     </div>
 
+    <div class="privacy-strip">
+      <div class="privacy-main">
+        <strong>개인화는 사용자가 허용한 범위 안에서만</strong>
+        <span>Contents Wallet은 원본 위치나 활동 로그를 그대로 보여주지 않고, 시청 가능 시간·집 도착 여부 같은 요약 신호만 편성에 사용합니다.</span>
+      </div>
+      <div class="privacy-item">
+        <div class="pi-label">Opt-in</div>
+        <div class="pi-text">Galaxy 생활 리듬 연동은 최초 동의 후 켜집니다.</div>
+      </div>
+      <div class="privacy-item">
+        <div class="pi-label">On-device</div>
+        <div class="pi-text">민감한 신호는 기기 안에서 먼저 요약됩니다.</div>
+      </div>
+      <div class="privacy-item">
+        <div class="pi-label">Editable</div>
+        <div class="pi-text">사용자는 슬롯을 수정하고 학습을 끌 수 있습니다.</div>
+      </div>
+    </div>
+
     <!-- Persona bars -->
     <div>
       <div class="ts-sect-label">라이프스타일별 시청 가능 타임슬롯 비교</div>
@@ -1781,7 +2151,7 @@ body { font-family: var(--font-kr); color: var(--text); }
             <div class="mc nflx" id="mc-nflx-mon"><div class="mc-lbl">NETFLIX</div><div class="mc-ttl">오징어게임 EP.1</div></div>
             <div class="mc kbo" id="mc-kbo-tue2" style="opacity:0 !important;"><div class="mc-lbl">경기 계속</div><div class="mc-ttl">연장 가능</div></div>
             <div class="mc nflx" id="mc-nflx-wed"><div class="mc-lbl">NETFLIX</div><div class="mc-ttl">오징어게임 EP.3</div></div>
-            <div class="mc tving" id="mc-tving-thu"><div class="mc-lbl">NETFLIX 🆕</div><div class="mc-ttl">흑백요리사 EP.6</div></div>
+            <div class="mc nflx" id="mc-tving-thu"><div class="mc-lbl">NETFLIX 🆕</div><div class="mc-ttl">흑백요리사 EP.6</div></div>
             <div class="mc nflx" id="mc-nflx-fri"><div class="mc-lbl">NETFLIX</div><div class="mc-ttl">오징어게임 EP.4</div></div>
             <div class="mc nflx" id="mc-nflx-sat"><div class="mc-lbl">NETFLIX BINGE</div><div class="mc-ttl">오징어게임 EP.1-3</div></div>
             <div class="mc nflx" id="mc-nflx-sun"><div class="mc-lbl">NETFLIX BINGE</div><div class="mc-ttl">오징어게임 EP.4-5</div></div>
@@ -1792,7 +2162,7 @@ body { font-family: var(--font-kr); color: var(--text); }
             <div class="mc empty" id="mc-empty1"></div>
             <div class="mc nflx" id="mc-nflx-tue-late"><div class="mc-lbl">NETFLIX</div><div class="mc-ttl">오징어게임 EP.2</div></div>
             <div class="mc empty" id="mc-empty2"></div>
-            <div class="mc tving" id="mc-tving-thu-late"><div class="mc-lbl">NETFLIX 🆕</div><div class="mc-ttl">흑백요리사 S2</div></div>
+            <div class="mc nflx" id="mc-tving-thu-late"><div class="mc-lbl">NETFLIX 🆕</div><div class="mc-ttl">흑백요리사 S2</div></div>
             <div class="mc empty" id="mc-empty3"></div>
             <div class="mc nflx" id="mc-nflx-sat-late"><div class="mc-lbl">NETFLIX BINGE</div><div class="mc-ttl">오징어게임 EP.5</div></div>
             <div class="mc dsp" id="mc-dsp-sun2"><div class="mc-lbl">Disney+</div><div class="mc-ttl">Andor S2 EP.2</div></div>
@@ -1819,6 +2189,20 @@ body { font-family: var(--font-kr); color: var(--text); }
       </div>
       <div class="agent-badge"><div class="dot"></div>Agent 자동 편성 완료</div>
     </div>
+    <div class="s8-hub-nav">
+      <div class="oneui-rail">
+        <span class="oneui-chip active">For You</span>
+        <span class="oneui-chip">Live</span>
+        <span class="oneui-chip">Continue</span>
+        <span class="oneui-chip">Apps</span>
+        <span class="oneui-chip samsung">SmartThings</span>
+      </div>
+      <div class="s8-device-status">
+        <span class="status-pill">Home Wi-Fi · 18:42 연결</span>
+        <span class="status-pill secure">Knox · 요약 신호만 사용</span>
+      </div>
+    </div>
+    <div class="s8-body">
     <div class="schedule-grid-wrap">
       <div class="sg-header">
         <div></div>
@@ -1943,6 +2327,82 @@ body { font-family: var(--font-kr); color: var(--text); }
         </div>
       </div>
     </div>
+    <aside class="s8-curation-panel">
+      <div class="curation-title">
+        <h3>Agent Curation</h3>
+        <div class="mode">LIVE REASONING</div>
+      </div>
+      <div class="context-card">
+        <div class="why-label">Today Context</div>
+        <div class="context-grid">
+          <div class="context-item">
+            <div class="ci-label">Situation</div>
+            <div class="ci-value" id="s8-context-now">홈 도착 후 TV 가능</div>
+          </div>
+          <div class="context-item">
+            <div class="ci-label">Window</div>
+            <div class="ci-value" id="s8-context-window">20:00–22:30</div>
+          </div>
+          <div class="context-item">
+            <div class="ci-label">Mood</div>
+            <div class="ci-value" id="s8-context-mood">집중 시청</div>
+          </div>
+          <div class="context-item">
+            <div class="ci-label">Signal</div>
+            <div class="ci-value" id="s8-context-signal">Galaxy + TV Home</div>
+          </div>
+        </div>
+      </div>
+      <div class="pref-card">
+        <div class="pref-head">
+          <div class="pref-title" id="s8-pref-title">Drama / Thriller fit</div>
+          <div class="pref-score" id="s8-pref-score">86%</div>
+        </div>
+        <div class="pref-track"><div class="pref-fill" id="s8-pref-fill" style="width:86%"></div></div>
+        <div class="pref-desc" id="s8-pref-desc">최근 완주율이 높은 장르와 52분 러닝타임이 오늘 밤 슬롯에 맞습니다.</div>
+      </div>
+      <div class="replan-card">
+        <div class="replan-top">
+          <div class="why-label">Live Replan Scenario</div>
+          <div class="replan-state" id="s8-replan-state">MONITORING</div>
+        </div>
+        <div class="replan-flow">
+          <div class="replan-step" id="rp-step-1">
+            <div class="rs-kicker">Signal</div>
+            <div class="rs-text">KBO 연장 + 귀가 지연 감지</div>
+          </div>
+          <div class="replan-arrow">→</div>
+          <div class="replan-step" id="rp-step-2">
+            <div class="rs-kicker">Decision</div>
+            <div class="rs-text">Netflix EP.2를 22:40로 이동</div>
+          </div>
+          <div class="replan-arrow">→</div>
+          <div class="replan-step" id="rp-step-3">
+            <div class="rs-kicker">Action</div>
+            <div class="rs-text">22:00 TV Plus 하이라이트 배치</div>
+          </div>
+        </div>
+        <div class="replan-note" id="s8-replan-note">사용자는 리모컨으로 다시 찾지 않아도 되고, 삼성은 빈 슬롯을 TV Plus 기회로 전환합니다.</div>
+      </div>
+      <div class="why-card">
+        <div class="why-label">Why this slot</div>
+        <h4 id="s8-why-title">시간·취향·고정 일정이 함께 맞음</h4>
+        <p id="s8-why-desc">Agent가 콘텐츠 길이, 이번 주 여유 시간, 이미 잠긴 KBO 일정을 비교해 가장 손실이 적은 슬롯에 배치했습니다.</p>
+      </div>
+      <div class="control-card">
+        <div class="why-label">User Controls</div>
+        <div class="control-row">
+          <div class="control-pill primary" id="s8-control-primary">이 시간 고정하기</div>
+          <div class="control-pill" id="s8-control-secondary">오늘은 짧게 보기</div>
+          <div class="control-pill" id="s8-control-tertiary">다음 주로 미루기</div>
+        </div>
+      </div>
+      <div class="policy-mini">
+        <div><strong>OPT-IN</strong>연동 데이터는 사용자가 허용한 계정과 기기만 사용</div>
+        <div><strong>EDITABLE</strong>수정한 선택은 다음 편성에 즉시 반영</div>
+      </div>
+    </aside>
+    </div>
     <div class="s8-detail-bar" id="s8-bar">
       <div><div class="detail-label">선택됨</div><div class="detail-val" id="s8-detail-txt">셀을 선택해 상세 정보 확인</div></div>
       <div class="sep"></div>
@@ -2053,53 +2513,96 @@ body { font-family: var(--font-kr); color: var(--text); }
     </div>
   </section>
 
-  <!-- ⑪ EVOLUTION ────────────────────────────────────────────── -->
+  <!-- ⑪ EXECUTIVE VIEW ──────────────────────────────────────── -->
   <section class="screen" id="s11">
     <div class="s11-header">
-      <span class="label-xs">The Future of Contents Wallet</span>
-      <h2>점점 더 나를 알아가는 Agent</h2>
-      <p>사용 데이터가 쌓일수록 더 정밀하고, 더 자동화됩니다</p>
+      <div>
+        <span class="label-xs">Executive View · VD Service Strategy</span>
+        <h2>TV OS를 추천 화면에서<br>생활 편성 Agent로 전환</h2>
+        <p>소비자는 탐색 없이 바로 즐기고, 삼성은 TV Home·TV Plus·파트너 앱을 하나의 서비스 경험으로 묶어 체류와 전환을 키웁니다.</p>
+      </div>
+      <div class="exec-badge">Board-ready Concept</div>
     </div>
-    <div class="evolution-timeline">
-      <div class="evo-step active">
-        <div class="evo-dot">📥</div>
-        <div class="evo-timeframe">D+0 · 지금</div>
-        <div class="evo-title">Wallet 구성</div>
-        <div class="evo-desc">찜 목록, Watch Later, KBO 일정 수집. 라이프스타일 기반 초기 편성.</div>
-        <div class="evo-tag">Phase 1 · 출시</div>
+
+    <div class="exec-dashboard">
+      <div class="exec-panel">
+        <div class="exec-panel-title">
+          <h3>소비자가 체감하는 가치</h3>
+          <span>Consumer value</span>
+        </div>
+        <div class="consumer-grid">
+          <div class="consumer-card">
+            <div class="cc-icon">⚡</div>
+            <div class="cc-title">찾는 시간이 사라짐</div>
+            <div class="cc-body">TV를 켜면 오늘 볼 순서가 이미 준비되어 있습니다. 앱을 오가며 고르는 부담이 줄어듭니다.</div>
+          </div>
+          <div class="consumer-card">
+            <div class="cc-icon">🔄</div>
+            <div class="cc-title">상황이 바뀌면 편성도 바뀜</div>
+            <div class="cc-body">KBO 연장, 늦은 귀가, 피곤한 밤 같은 신호를 반영해 긴 콘텐츠를 미루고 짧은 콘텐츠로 대체합니다.</div>
+          </div>
+          <div class="consumer-card">
+            <div class="cc-icon">🛡</div>
+            <div class="cc-title">내가 통제하는 개인화</div>
+            <div class="cc-body">Opt-in, 온디바이스 요약, 편성 수정으로 자동화의 편리함과 신뢰를 동시에 제공합니다.</div>
+          </div>
+        </div>
+        <div class="journey-strip">
+          <div class="journey-step"><div class="js-num">01</div><div class="js-text">TV ON<br>오늘 큐 확인</div></div>
+          <div class="journey-step"><div class="js-num">02</div><div class="js-text">Live 변동<br>Agent 재편성</div></div>
+          <div class="journey-step"><div class="js-num">03</div><div class="js-text">TV Plus<br>빈 슬롯 채움</div></div>
+          <div class="journey-step"><div class="js-num">04</div><div class="js-text">다음 회차<br>자동 이어보기</div></div>
+        </div>
       </div>
-      <div class="evo-step active">
-        <div class="evo-dot">📊</div>
-        <div class="evo-timeframe">D+7</div>
-        <div class="evo-title">패턴 학습</div>
-        <div class="evo-desc">시청 완료율, 일시정지 패턴, 건너뛰기 데이터 수집 시작.</div>
-        <div class="evo-tag">정확도 향상 중</div>
-      </div>
-      <div class="evo-step active">
-        <div class="evo-dot">🎯</div>
-        <div class="evo-timeframe">D+30</div>
-        <div class="evo-title">취향 프로필 완성</div>
-        <div class="evo-desc">장르·배우·크리에이터 선호도 확립. 자동 큐레이션 개시.</div>
-        <div class="evo-tag">Phase 2</div>
-      </div>
-      <div class="evo-step future">
-        <div class="evo-dot">🤖</div>
-        <div class="evo-timeframe">D+90</div>
-        <div class="evo-title">완전 자동 편성</div>
-        <div class="evo-desc">찜하지 않아도 취향 기반으로 콘텐츠를 자동 발굴해 편성.</div>
-        <div class="evo-tag" style="opacity:0.6;">Phase 3 · 예정</div>
-      </div>
-      <div class="evo-step future">
-        <div class="evo-dot">✨</div>
-        <div class="evo-timeframe">미래 비전</div>
-        <div class="evo-title">패밀리 편성</div>
-        <div class="evo-desc">가족 구성원별 취향 분리·통합. 온 가족을 위한 스마트 편성.</div>
-        <div class="evo-tag" style="opacity:0.6;">Beyond Phase 3</div>
+
+      <div class="exec-panel">
+        <div class="exec-panel-title">
+          <h3>VD 관점의 사업 임팩트</h3>
+          <span>Target KPI</span>
+        </div>
+        <div class="kpi-grid">
+          <div class="kpi-card">
+            <div class="kpi-num">23→3</div>
+            <div class="kpi-label">탐색 시간 단축</div>
+            <div class="kpi-note">콘텐츠 선택 피로를 TV Home UX에서 직접 해결</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-num">+35%</div>
+            <div class="kpi-label">찜 콘텐츠 소비율</div>
+            <div class="kpi-note">보관된 의도를 실제 시청으로 전환</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-num">TV+</div>
+            <div class="kpi-label">빈 슬롯 수익화</div>
+            <div class="kpi-note">짧은 공백을 Samsung TV Plus 추천 기회로 사용</div>
+          </div>
+          <div class="kpi-card">
+            <div class="kpi-num">OS</div>
+            <div class="kpi-label">TV 플랫폼 차별화</div>
+            <div class="kpi-note">OTT가 따라 하기 어려운 TV·Galaxy·SmartThings 결합</div>
+          </div>
+        </div>
+        <div class="strategy-lanes">
+          <div class="strategy-lane"><strong>Phase 1 · MVP</strong><span>TV Plus, 사용자 직접 추가, KBO/캘린더, TV Home 로그 기반으로 시작</span></div>
+          <div class="strategy-lane"><strong>Phase 2 · Partner</strong><span>YouTube, 스포츠, 국내 OTT와 찜/신규 공개/이어보기 연동 확대</span></div>
+          <div class="strategy-lane"><strong>Phase 3 · Family AI</strong><span>가족 프로필, 취향 자동 발굴, 거실 상황 기반 편성 자동화</span></div>
+        </div>
       </div>
     </div>
-    <div class="s11-vision">
-      <div class="big-quote">"찾지 말고, 즐기세요"</div>
-      <p>Samsung Contents Wallet · TV가 당신의 콘텐츠 에이전트가 됩니다</p>
+
+    <div class="decision-bar">
+      <div class="decision-item">
+        <div class="di-label">Decision 1</div>
+        <div class="di-text">MVP는 TV Plus와 자체 TV Home 데이터 중심으로 빠르게 검증</div>
+      </div>
+      <div class="decision-item">
+        <div class="di-label">Decision 2</div>
+        <div class="di-text">외부 OTT 연동은 파트너십 단계에 따라 모듈형으로 확장</div>
+      </div>
+      <div class="decision-item">
+        <div class="di-label">Decision 3</div>
+        <div class="di-text">개인화 메시지는 Knox·Opt-in·수정 가능성을 전면에 배치</div>
+      </div>
     </div>
   </section>
 
@@ -2171,7 +2674,7 @@ function onScreenEnter(n) {
   if (n === 4) startConnectionAnim();
   if (n === 5) initWalletNav();
   if (n === 7) initAgentAnim();
-  if (n === 8) { initScheduleAnim(); initScheduleNav(); }
+  if (n === 8) { initScheduleAnim(); initScheduleNav(); startReplanScenario(); }
 }
 
 // ── SCREEN 7: AGENT SCHEDULE BUILDER ─────────────────────────
@@ -2326,8 +2829,10 @@ function startConnectionAnim() {
   PLATFORMS.forEach(p => {
     setTimeout(() => {
       const line = document.getElementById('l-' + p.id);
+      const dot = document.getElementById('d-' + p.id);
       const node = document.getElementById('pn-' + p.id);
       if (line) line.classList.add('drawn');
+      if (dot) dot.classList.add('on');
       if (node) node.classList.add('connected');
     }, p.delay);
   });
@@ -2391,16 +2896,227 @@ document.querySelectorAll('.s5-tab').forEach((tab, i) => {
 let schedRow = 0, schedCol = 0;
 let schedNavActive = false;
 const SCHED_ROWS = 3, SCHED_COLS = 7;
+const SCHED_DAYS = ['MON','TUE','WED','THU','FRI','SAT','SUN'];
+const SCHED_TIMES = ['18:00','20:00','22:00'];
 
 function initScheduleNav() {
-  schedRow = 1; schedCol = 0; // Default: Tuesday row 1
+  schedRow = 1; schedCol = 1; // Default: Tuesday KBO slot
   schedNavActive = true;
+  applyScheduleFitBadges();
+  bindScheduleClicks();
   updateSchedFocus();
 }
 
 function getSchedCells() {
   const rows = document.querySelectorAll('#s8 .sg-row');
   return rows;
+}
+
+function setText(id, value) {
+  const el = document.getElementById(id);
+  if (el) el.textContent = value;
+}
+
+function applyScheduleFitBadges() {
+  document.querySelectorAll('#s8 .sg-row').forEach((row, ri) => {
+    row.querySelectorAll('.sg-cell').forEach((cell, ci) => {
+      cell.dataset.fit = getSchedInsight(cell, ri, ci).fitBadge;
+    });
+  });
+}
+
+let schedClicksBound = false;
+function bindScheduleClicks() {
+  if (schedClicksBound) return;
+  schedClicksBound = true;
+  document.querySelectorAll('#s8 .sg-row').forEach((row, ri) => {
+    row.querySelectorAll('.sg-cell').forEach((cell, ci) => {
+      cell.addEventListener('click', (e) => {
+        e.stopPropagation();
+        schedRow = ri;
+        schedCol = ci;
+        updateSchedFocus();
+      });
+    });
+  });
+}
+
+function getSchedInsight(cell, row, col) {
+  const day = SCHED_DAYS[col] || 'DAY';
+  const time = SCHED_TIMES[row] || '';
+  const detail = cell.dataset.detail || '여유 시간';
+  const isWeekend = col >= 5;
+
+  if (cell.classList.contains('kbo-cell')) {
+    return {
+      type: '고정 스케줄 (KBO)',
+      fitBadge: 'LOCKED',
+      contextNow: row === 1 ? '라이브 진행 중' : '경기 시작 전',
+      window: `${day} ${time} 고정`,
+      mood: '응원 모드',
+      signal: 'KBO 일정 + TV 알림',
+      prefTitle: 'Sports loyalty fit',
+      score: 96,
+      prefDesc: '삼성 라이온즈 경기 일정은 시간이 고정되어 다른 콘텐츠보다 먼저 잠깁니다.',
+      whyTitle: '시간이 고정된 라이브는 Agent가 가장 먼저 보호합니다',
+      whyDesc: 'KBO 라이브는 다시 보기보다 실시간 가치가 높아, 영화나 시리즈 슬롯을 뒤로 미루고 고정 편성합니다.',
+      controls: ['경기 시작 시 자동 전환', '15분 전 알림', '이번 경기 제외']
+    };
+  }
+
+  if (cell.classList.contains('yt-cell')) {
+    return {
+      type: '틈새 슬롯 (YouTube)',
+      fitBadge: 'SHORT',
+      contextNow: '귀가 직후 짧은 여유',
+      window: `${day} ${time} 30분대`,
+      mood: '가볍게 보기',
+      signal: 'Watch Later + 짧은 슬롯',
+      prefTitle: 'Short-form fit',
+      score: 82,
+      prefDesc: '18–42분 영상은 저녁 전환 시간대에 부담 없이 소비하기 좋습니다.',
+      whyTitle: '짧은 영상은 긴 시리즈 앞의 틈새 시간을 채웁니다',
+      whyDesc: 'Agent는 긴 콘텐츠를 쪼개지 않고, 남는 30분대 슬롯에 YouTube Watch Later를 배치합니다.',
+      controls: ['오늘은 건너뛰기', '비슷한 영상 더 보기', '긴 콘텐츠로 대체']
+    };
+  }
+
+  if (cell.classList.contains('nflx-cell')) {
+    const isBinge = isWeekend || detail.includes('빈지');
+    return {
+      type: isBinge ? '주말 빈지 블록 (Netflix)' : 'Agent 자동 배치 (Netflix)',
+      fitBadge: isBinge ? 'BINGE' : '86%',
+      contextNow: isBinge ? '주말 긴 여유 확보' : 'KBO 이후 집중 가능',
+      window: `${day} ${time} ${isBinge ? '2시간+' : '1시간대'}`,
+      mood: isBinge ? '몰아보기' : '집중 시청',
+      signal: isBinge ? '완결 시리즈 + 주말' : '찜 목록 + 취침 전 슬롯',
+      prefTitle: isBinge ? 'Binge readiness' : 'Drama / Thriller fit',
+      score: isBinge ? 91 : 86,
+      prefDesc: isBinge ? '완결된 시리즈와 주말 긴 슬롯이 맞아 연속 시청으로 묶었습니다.' : '최근 완주율이 높은 장르와 52분 러닝타임이 오늘 밤 슬롯에 맞습니다.',
+      whyTitle: isBinge ? '주말에는 회차를 묶어 탐색 비용을 줄입니다' : '라이브 이후 남은 1시간을 끊김 없이 씁니다',
+      whyDesc: isBinge ? 'Agent가 완결 여부와 총 러닝타임을 보고, 짧은 평일 슬롯이 아닌 주말 블록에 배정했습니다.' : 'KBO가 끝난 뒤 바로 이어 볼 수 있도록 같은 플랫폼의 다음 회차를 배치했습니다.',
+      controls: ['이 시간 고정하기', '다음 회차로 변경', '다음 주로 미루기']
+    };
+  }
+
+  if (cell.classList.contains('disney-cell')) {
+    return {
+      type: 'Agent 자동 배치 (Disney+)',
+      fitBadge: 'EPIC',
+      contextNow: '주말 오후 여유',
+      window: `${day} ${time} 50분`,
+      mood: '몰입형 감상',
+      signal: '장편 선호 + 주말',
+      prefTitle: 'Sci-fi preference fit',
+      score: 78,
+      prefDesc: '긴 호흡의 작품은 평일 틈새보다 주말 여유 시간에 더 잘 완주됩니다.',
+      whyTitle: '몰입형 콘텐츠는 방해가 적은 시간에 배치합니다',
+      whyDesc: 'Agent가 장르 선호와 예상 집중 시간을 비교해 주말 슬롯에 Disney+ 콘텐츠를 넣었습니다.',
+      controls: ['가족과 보기로 변경', '자막 설정 열기', '다음 주로 미루기']
+    };
+  }
+
+  if (cell.classList.contains('tvplus-cell')) {
+    return {
+      type: '빈 슬롯 대체 (Samsung TV Plus)',
+      fitBadge: 'TV+',
+      contextNow: 'KBO 연장 감지',
+      window: `${day} ${time} 28분`,
+      mood: '짧은 하이라이트',
+      signal: 'Live 변동 + TV Plus',
+      prefTitle: 'Service opportunity fit',
+      score: 88,
+      prefDesc: '예상보다 짧아진 슬롯을 무료 하이라이트로 채워 사용자는 기다리지 않고 이어 볼 수 있습니다.',
+      whyTitle: '빈 시간을 Samsung TV Plus 기회로 전환합니다',
+      whyDesc: '긴 Netflix 회차는 22:40로 미루고, 22:00–22:35 구간에는 KBO 하이라이트를 넣어 흐름을 끊지 않습니다.',
+      controls: ['Netflix 바로 보기', 'TV Plus 계속 보기', '자동 대체 끄기']
+    };
+  }
+
+  if (cell.classList.contains('tving-cell')) {
+    return {
+      type: 'Agent 자동 배치 (Tving)',
+      fitBadge: 'SOCIAL',
+      contextNow: '늦은 밤 가벼운 슬롯',
+      window: `${day} ${time} 70분`,
+      mood: '예능/리얼리티',
+      signal: '찜 목록 + 주말 심야',
+      prefTitle: 'Reality show fit',
+      score: 74,
+      prefDesc: '가벼운 장르는 늦은 밤에도 부담이 낮아 주말 후반 슬롯에 맞습니다.',
+      whyTitle: '취침 전 부담이 낮은 콘텐츠로 마무리합니다',
+      whyDesc: 'Agent가 긴장도와 러닝타임을 보고 시리즈보다 가벼운 리얼리티를 뒤쪽 슬롯에 배치했습니다.',
+      controls: ['한 회만 보기', '가벼운 영상으로 대체', '편성에서 제외']
+    };
+  }
+
+  return {
+    type: '여유 시간',
+    fitBadge: 'FREE',
+    contextNow: '회복 시간 확보',
+    window: `${day} ${time}`,
+    mood: '휴식',
+    signal: '과편성 방지',
+    prefTitle: 'Recovery balance',
+    score: 64,
+    prefDesc: 'Agent가 모든 여유 시간을 채우지 않고, 취침 전 회복 시간을 남겨둡니다.',
+    whyTitle: '비워둔 슬롯도 편성의 일부입니다',
+    whyDesc: '사용자가 피곤한 날에는 이 슬롯을 비워두거나 짧은 콘텐츠로만 채울 수 있습니다.',
+    controls: ['짧은 콘텐츠 추천', '완전히 비워두기', '내일로 넘기기']
+  };
+}
+
+function updateCurationPanel(info) {
+  setText('s8-context-now', info.contextNow);
+  setText('s8-context-window', info.window);
+  setText('s8-context-mood', info.mood);
+  setText('s8-context-signal', info.signal);
+  setText('s8-pref-title', info.prefTitle);
+  setText('s8-pref-score', info.score + '%');
+  setText('s8-pref-desc', info.prefDesc);
+  setText('s8-why-title', info.whyTitle);
+  setText('s8-why-desc', info.whyDesc);
+  setText('s8-control-primary', info.controls[0]);
+  setText('s8-control-secondary', info.controls[1]);
+  setText('s8-control-tertiary', info.controls[2]);
+  const fill = document.getElementById('s8-pref-fill');
+  if (fill) fill.style.width = info.score + '%';
+}
+
+let s8ReplanDone = false;
+function startReplanScenario() {
+  if (s8ReplanDone) return;
+  s8ReplanDone = true;
+
+  const markStep = (id, stateText) => {
+    const step = document.getElementById(id);
+    if (step) step.classList.add('on');
+    setText('s8-replan-state', stateText);
+  };
+
+  setTimeout(() => markStep('rp-step-1', 'SIGNAL IN'), 900);
+  setTimeout(() => markStep('rp-step-2', 'RE-PLANNING'), 1900);
+  setTimeout(() => {
+    markStep('rp-step-3', 'UPDATED');
+    const rows = document.querySelectorAll('#s8 .sg-row');
+    const tueLateCell = rows[2]?.querySelectorAll('.sg-cell')[1];
+    if (!tueLateCell) return;
+
+    tueLateCell.classList.remove('nflx-cell');
+    tueLateCell.classList.add('tvplus-cell', 'replanned');
+    tueLateCell.dataset.detail = 'Samsung TV Plus · KBO 하이라이트 · 28분 (Netflix EP.2는 22:40로 이동)';
+    tueLateCell.innerHTML = `
+      <div><div class="sc-platform"><span class="platform-badge pb-tvplus" style="font-size:10px;">TV+</span></div>
+      <div class="sc-title">KBO 하이라이트</div></div>
+      <div class="sc-meta">28분 · Netflix 22:40</div>
+    `;
+
+    applyScheduleFitBadges();
+    schedRow = 2;
+    schedCol = 1;
+    updateSchedFocus();
+    setText('s8-replan-note', '재편성 완료: 소비자는 기다리지 않고 이어 보고, 삼성은 빈 시간을 TV Plus 추천 기회로 전환합니다.');
+  }, 3000);
 }
 
 function updateSchedFocus() {
@@ -2418,16 +3134,10 @@ function updateSchedFocus() {
     if (cells[schedCol]) {
       const detail = cells[schedCol].dataset.detail || '—';
       document.getElementById('s8-detail-txt').textContent = detail;
-      // Determine type
       const cell = cells[schedCol];
-      let type = '—';
-      if (cell.classList.contains('kbo-cell')) type = '고정 스케줄 (KBO)';
-      else if (cell.classList.contains('nflx-cell')) type = 'Agent 자동 배치 (Netflix)';
-      else if (cell.classList.contains('disney-cell')) type = 'Agent 자동 배치 (Disney+)';
-      else if (cell.classList.contains('yt-cell')) type = '틈새 슬롯 (YouTube)';
-      else if (cell.classList.contains('tving-cell')) type = 'Agent 자동 배치 (Tving)';
-      else type = '여유 시간';
-      document.getElementById('s8-detail-type').textContent = type;
+      const insight = getSchedInsight(cell, schedRow, schedCol);
+      document.getElementById('s8-detail-type').textContent = insight.type;
+      updateCurationPanel(insight);
     }
   }
 }
