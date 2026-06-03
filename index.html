@@ -85,6 +85,61 @@ body { font-family: var(--font-kr); color: var(--text); }
 }
 .pdot.on { background: var(--blue-bright); width: 20px; border-radius: 3px; }
 
+/* ── SCREEN 3: ECOSYSTEM DIAGRAM ─────────────────────────────── */
+#s3 { padding: 56px 80px 64px; }
+.s3-layout { width:100%; height:100%; display:grid; grid-template-columns:420px 1fr; gap:60px; align-items:center; }
+.s3-left {}
+.s3-proof-item {
+  display:flex; align-items:center; gap:12px;
+  font-size:15px; color:var(--text2); line-height:1.45;
+}
+.s3-proof-ic { font-size:20px; flex-shrink:0; }
+.s3-right {
+  display:flex; flex-direction:column; align-items:center; gap:24px;
+  position:relative;
+}
+.eco-center { display:flex; flex-direction:column; align-items:center; }
+.eco-tv-frame {
+  width:220px; position:relative; display:flex; flex-direction:column; align-items:center;
+}
+.eco-tv-screen {
+  width:100%; height:136px; border:3px solid var(--blue-light); border-radius:12px;
+  background:linear-gradient(160deg,#050D2E,#0A1848);
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  box-shadow:0 0 50px rgba(43,92,230,0.35), inset 0 0 20px rgba(43,92,230,0.08);
+}
+.eco-tv-stand {
+  width:56px; height:20px;
+  border-left:3px solid var(--blue-light); border-right:3px solid var(--blue-light); border-bottom:3px solid var(--blue-light);
+  border-radius:0 0 6px 6px; margin-top:-1px;
+}
+.eco-nodes {
+  display:grid; grid-template-columns:1fr auto 1fr; grid-template-rows:auto auto;
+  gap:20px 40px; width:100%; align-items:start;
+}
+.eco-node {
+  background:rgba(255,255,255,0.055); border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px; padding:18px 16px; position:relative;
+  display:flex; flex-direction:column; gap:8px; align-items:center; text-align:center;
+}
+.eco-node-icon {
+  width:48px; height:48px; border-radius:14px;
+  display:flex; align-items:center; justify-content:center; font-size:22px;
+}
+.eco-node-label { font-size:13px; font-weight:800; color:var(--text); }
+.eco-node-desc { font-size:11px; color:var(--text2); line-height:1.5; }
+.eco-arrow {
+  position:absolute; font-size:20px; font-weight:700; color:var(--blue-bright);
+  opacity:0.7;
+}
+.eco-arrow-right { right:-26px; top:50%; transform:translateY(-50%); }
+.eco-arrow-left  { left:-26px;  top:50%; transform:translateY(-50%); }
+.eco-arrow-up    { bottom:-26px; left:50%; transform:translateX(-50%); }
+.eco-note {
+  font-size:14px; color:var(--text3); text-align:center; font-style:italic;
+  padding:10px 24px; border-top:1px solid rgba(255,255,255,0.08); width:100%;
+}
+
 /* ── SAMSUNG LOGO ─────────────────────────────────────────────── */
 .samsung-logo {
   font-family: var(--font-en); font-weight: 700; letter-spacing: -0.01em;
@@ -1343,6 +1398,19 @@ body { font-family: var(--font-kr); color: var(--text); }
 }
 .ts-sect-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
 
+/* S6 privacy bar */
+.s6-privacy-bar {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  padding: 11px 20px; border-radius: 10px;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  font-size: 13px; color: var(--text3);
+}
+.s6-priv-tag {
+  font-size: 12px; font-weight: 700; color: var(--green);
+  font-family: var(--font-en); letter-spacing: 0.04em;
+}
+.s6-priv-sep { color: var(--text3); opacity: 0.4; }
+
 .ts-signals { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
 .ts-sig {
   background: var(--bg3); border-radius: 13px; padding: 15px 16px;
@@ -1746,75 +1814,86 @@ body { font-family: var(--font-kr); color: var(--text); }
         </div>
       </div>
       <div class="s2-mini-stats">
-        <span>평균 <strong>23분</strong> 탐색 소비</span>
+        <span>탐색에 매번 평균 <strong>18분</strong> 소비</span>
         <span class="msd">·</span>
-        <span>1인 평균 <strong>4.2개</strong> OTT 구독</span>
+        <span>1인 평균 <strong>2.3개</strong> OTT 구독</span>
         <span class="msd">·</span>
-        <span>찜 콘텐츠 <strong>47%</strong> 끝내 미시청</span>
+        <span>찜 콘텐츠 절반 가까이 <strong>끝내 미시청</strong></span>
       </div>
     </div>
   </section>
 
-  <!-- ③ SAMSUNG ADVANTAGE ─────────────────────────────────────── -->
+  <!-- ③ SAMSUNG ECOSYSTEM ─────────────────────────────────────── -->
   <section class="screen" id="s3">
-    <div style="text-align:center;animation:fadeInUp 0.7s both;">
-      <div class="oneui-rail" style="margin-bottom:18px;">
-        <span class="oneui-chip active">For You</span>
-        <span class="oneui-chip">Live</span>
-        <span class="oneui-chip">Apps</span>
-        <span class="oneui-chip samsung">SmartThings</span>
-      </div>
-      <span class="label-xs">One UI Tizen · SmartThings · Knox</span>
-      <h2 class="section-title" style="font-size:50px;margin-top:12px;">왜 삼성 TV만이 할 수 있는가</h2>
-      <p class="section-subtitle" style="margin-top:10px;">삼성 TV는 앱을 실행하는 화면이 아니라,<br>엔터테인먼트와 스마트 홈, 라이프스타일 맥락이 만나는 허브입니다.</p>
-    </div>
-    <div class="compare-grid" style="margin-top:44px;">
-      <div class="compare-col left">
-        <div class="compare-title">기존 OTT 추천의 한계</div>
-        <div class="compare-item"><span class="cicon">✗</span> 자사 플랫폼 콘텐츠만 추천</div>
-        <div class="compare-item"><span class="cicon">✗</span> 시청 이력 기반 반복 추천에 그침</div>
-        <div class="compare-item"><span class="cicon">✗</span> 사용자의 실제 여유 시간을 모름</div>
-        <div class="compare-item"><span class="cicon">✗</span> 플랫폼 간 찜 목록이 분리되어 있음</div>
-        <div class="compare-item"><span class="cicon">✗</span> KBO·유튜브 등 라이브/외부 일정 미반영</div>
-      </div>
-      <div class="compare-mid">
-        <div style="display:flex;flex-direction:column;align-items:center;gap:16px;">
-          <div style="font-size:28px;color:var(--text3);">↔</div>
-          <div class="tv-icon">
-            <div style="font-size:11px;font-weight:900;letter-spacing:0.1em;color:var(--blue-bright);">TV</div>
-          </div>
+    <div class="s3-layout">
+
+      <!-- Left: headline -->
+      <div class="s3-left">
+        <span class="label-xs" style="display:block;margin-bottom:14px;">Samsung Ecosystem Advantage</span>
+        <h2 style="font-size:52px;font-weight:900;letter-spacing:-0.03em;line-height:1.08;animation:fadeInUp 0.7s both;">삼성만이<br>이 연결을<br>갖고 있습니다</h2>
+        <p style="font-size:18px;color:var(--text2);margin-top:24px;line-height:1.65;max-width:380px;animation:fadeInUp 0.7s 0.15s both;">OTT 앱은 콘텐츠만 압니다.<br>Samsung은 콘텐츠와 <strong style="color:#fff;">당신의 하루</strong>를 함께 압니다.<br>그 차이가 Contents Wallet입니다.</p>
+        <div style="margin-top:36px;display:flex;flex-direction:column;gap:12px;animation:fadeInUp 0.7s 0.3s both;opacity:0;">
+          <div class="s3-proof-item"><span class="s3-proof-ic">🔗</span> 삼성 계정 하나로 TV·Galaxy·SmartThings 연동</div>
+          <div class="s3-proof-item"><span class="s3-proof-ic">📡</span> 별도 앱 설치 없이 기기 간 신호 자동 공유</div>
+          <div class="s3-proof-item"><span class="s3-proof-ic">🔒</span> Knox 온디바이스 처리 — 원본 데이터 외부 미전송</div>
         </div>
       </div>
-      <div class="compare-col right">
-        <div class="compare-title" style="color:#6B9FFF;">Samsung Contents Wallet</div>
-        <div class="compare-item"><span class="cicon">✓</span> 모든 OTT·유튜브·스포츠 통합</div>
-        <div class="compare-item"><span class="cicon">✓</span> 모바일 데이터로 실제 여유 시간 파악</div>
-        <div class="compare-item"><span class="cicon">✓</span> 콘텐츠 특성 기반 자동 배치 로직</div>
-        <div class="compare-item"><span class="cicon">✓</span> 취향·라이프스타일 학습으로 진화</div>
-        <div class="compare-item"><span class="cicon">✓</span> 사용자는 더 이상 탐색하지 않아도 됨</div>
+
+      <!-- Right: Ecosystem diagram -->
+      <div class="s3-right">
+        <!-- Center: TV + Contents Wallet -->
+        <div class="eco-center" style="animation:scaleIn 0.7s 0.2s both;opacity:0;">
+          <div class="eco-tv-frame">
+            <div class="eco-tv-screen">
+              <div style="font-size:13px;font-weight:900;letter-spacing:0.12em;color:rgba(255,255,255,0.9);">SAMSUNG</div>
+              <div style="font-size:10px;font-weight:700;color:var(--blue-bright);margin-top:4px;letter-spacing:0.06em;">Contents Wallet</div>
+              <div style="margin-top:10px;display:flex;gap:5px;">
+                <div style="width:22px;height:14px;border-radius:3px;background:#E50914;"></div>
+                <div style="width:22px;height:14px;border-radius:3px;background:#1A56C4;"></div>
+                <div style="width:22px;height:14px;border-radius:3px;background:#282828;border:1px solid #444;"></div>
+                <div style="width:22px;height:14px;border-radius:3px;background:#FF153C;"></div>
+                <div style="width:22px;height:14px;border-radius:3px;background:#1B3B8A;"></div>
+              </div>
+            </div>
+            <div class="eco-tv-stand"></div>
+          </div>
+          <div style="margin-top:16px;font-size:13px;font-weight:700;color:var(--blue-bright);text-align:center;letter-spacing:0.05em;">나만의 편성표 자동 생성</div>
+        </div>
+
+        <!-- Satellite nodes -->
+        <div class="eco-nodes">
+          <div class="eco-node" style="animation:slideRight 0.6s 0.45s both;opacity:0;">
+            <div class="eco-node-icon" style="background:linear-gradient(135deg,#1428A0,#2B5CE6);">📱</div>
+            <div class="eco-node-label">Galaxy</div>
+            <div class="eco-node-desc">기상·귀가·취침<br>생활 리듬 신호</div>
+            <div class="eco-arrow eco-arrow-right">→</div>
+          </div>
+          <div class="eco-node" style="animation:slideLeft 0.6s 0.45s both;opacity:0;grid-column:3;">
+            <div class="eco-node-icon" style="background:linear-gradient(135deg,#00A855,#00D46A);">🏠</div>
+            <div class="eco-node-label">SmartThings</div>
+            <div class="eco-node-desc">조명·Wi-Fi·TV<br>거실 상황 감지</div>
+            <div class="eco-arrow eco-arrow-left">←</div>
+          </div>
+          <div class="eco-node" style="animation:fadeInUp 0.6s 0.6s both;opacity:0;grid-column:1;">
+            <div class="eco-node-icon" style="background:linear-gradient(135deg,#3A0070,#7B2FBE);">🛡</div>
+            <div class="eco-node-label">Knox</div>
+            <div class="eco-node-desc">온디바이스 처리<br>Opt-in 동의 기반</div>
+            <div class="eco-arrow eco-arrow-up">↑</div>
+          </div>
+          <div class="eco-node" style="animation:fadeInUp 0.6s 0.6s both;opacity:0;grid-column:3;">
+            <div class="eco-node-icon" style="background:linear-gradient(135deg,#FF8C00,#FFB300);">🎬</div>
+            <div class="eco-node-label">OTT · YouTube · KBO</div>
+            <div class="eco-node-desc">찜 목록·Watch Later<br>라이브 일정 통합</div>
+            <div class="eco-arrow eco-arrow-up">↑</div>
+          </div>
+        </div>
+
+        <!-- Bottom note -->
+        <div class="eco-note" style="animation:fadeIn 0.6s 1s both;opacity:0;">
+          어떤 OTT도 단독으로는 이 연결을 만들 수 없습니다
+        </div>
       </div>
-    </div>
-    <div class="samsung-stack">
-      <div class="stack-card">
-        <div class="stack-kicker">TV Home</div>
-        <div class="stack-title">시청 접점</div>
-        <div class="stack-desc">앱 실행, 라이브, 찜한 콘텐츠가 모이는 첫 화면에서 바로 편성 제안</div>
-      </div>
-      <div class="stack-card">
-        <div class="stack-kicker">Galaxy</div>
-        <div class="stack-title">생활 리듬</div>
-        <div class="stack-desc">기상, 귀가, 취침 패턴을 원본이 아닌 요약 신호로 변환</div>
-      </div>
-      <div class="stack-card">
-        <div class="stack-kicker">SmartThings</div>
-        <div class="stack-title">거실 상황</div>
-        <div class="stack-desc">조명, 홈 Wi-Fi, TV 사용 시간으로 실제 시청 가능한 순간 감지</div>
-      </div>
-      <div class="stack-card">
-        <div class="stack-kicker">Knox</div>
-        <div class="stack-title">신뢰 기반</div>
-        <div class="stack-desc">옵트인 동의와 온디바이스 분석을 전제로 개인화 경험 제공</div>
-      </div>
+
     </div>
   </section>
 
@@ -2274,23 +2353,14 @@ body { font-family: var(--font-kr); color: var(--text); }
       </div>
     </div>
 
-    <div class="privacy-strip">
-      <div class="privacy-main">
-        <strong>개인화는 사용자가 허용한 범위 안에서만</strong>
-        <span>Contents Wallet은 원본 위치나 활동 로그를 그대로 보여주지 않고, 시청 가능 시간·집 도착 여부 같은 요약 신호만 편성에 사용합니다.</span>
-      </div>
-      <div class="privacy-item">
-        <div class="pi-label">Opt-in</div>
-        <div class="pi-text">Galaxy 생활 리듬 연동은 최초 동의 후 켜집니다.</div>
-      </div>
-      <div class="privacy-item">
-        <div class="pi-label">On-device</div>
-        <div class="pi-text">민감한 신호는 기기 안에서 먼저 요약됩니다.</div>
-      </div>
-      <div class="privacy-item">
-        <div class="pi-label">Editable</div>
-        <div class="pi-text">사용자는 슬롯을 수정하고 학습을 끌 수 있습니다.</div>
-      </div>
+    <div class="s6-privacy-bar" style="animation:fadeIn 0.5s 0.5s both;opacity:0;">
+      <span class="s6-priv-tag">🔒 Knox</span>
+      <span class="s6-priv-sep">·</span>
+      <span>원본 위치·활동 로그 외부 미전송 — 요약 신호만 사용</span>
+      <span class="s6-priv-sep">·</span>
+      <span class="s6-priv-tag">Opt-in 동의</span>
+      <span class="s6-priv-sep">·</span>
+      <span class="s6-priv-tag">언제든 수정 가능</span>
     </div>
 
     <!-- Persona bars -->
@@ -2894,9 +2964,9 @@ body { font-family: var(--font-kr); color: var(--text); }
         </div>
         <div class="kpi-grid">
           <div class="kpi-card">
-            <div class="kpi-num">23→3</div>
-            <div class="kpi-label">탐색 시간 단축</div>
-            <div class="kpi-note">콘텐츠 선택 피로를 TV Home UX에서 직접 해결</div>
+            <div class="kpi-num">18→3분</div>
+            <div class="kpi-label">탐색 시간 단축 (목표)</div>
+            <div class="kpi-note">평균 18분 탐색 소비를 TV Home에서 직접 해소</div>
           </div>
           <div class="kpi-card">
             <div class="kpi-num">+35%</div>
@@ -3139,11 +3209,11 @@ function initScheduleAnim() {
 
 // ── SCREEN 4: PLATFORM CONNECTION ────────────────────────────
 const PLATFORMS = [
-  { id: 'netflix', delay: 600  },
-  { id: 'youtube', delay: 1400 },
-  { id: 'disney',  delay: 2200 },
-  { id: 'tving',   delay: 3000 },
-  { id: 'kbo',     delay: 3800 },
+  { id: 'netflix', delay: 400  },
+  { id: 'youtube', delay: 900  },
+  { id: 'disney',  delay: 1400 },
+  { id: 'tving',   delay: 1900 },
+  { id: 'kbo',     delay: 2400 },
 ];
 
 function startConnectionAnim() {
@@ -3172,7 +3242,7 @@ function startConnectionAnim() {
 
   setTimeout(() => {
     total.classList.add('show');
-  }, 4600);
+  }, 3000);
 }
 
 // ── SCREEN 5: WALLET NAVIGATION ──────────────────────────────
