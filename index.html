@@ -478,10 +478,10 @@ body { font-family: var(--font-kr); color: var(--text); }
 .shift-desc { margin-top: 5px; font-size: 13px; color: var(--text2); line-height: 1.45; }
 .shift-arrow { display: flex; align-items: center; justify-content: center; color: var(--blue-bright); font-size: 28px; }
 .connection-stage {
-  position: relative; width: 900px; height: 440px;
+  position: relative; width: 900px; height: 380px;
 }
 .tv-center {
-  position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%);
+  position: absolute; left: 350px; top: 120px;
   width: 200px; height: 140px; border: 3px solid var(--blue-light);
   border-radius: 12px; background: var(--bg);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -1003,9 +1003,101 @@ body { font-family: var(--font-kr); color: var(--text); }
 .s8-detail-bar .sep { width: 1px; height: 28px; background: var(--border2); }
 
 /* ═══════════════════════════════════════════════════════════════
-   SCREEN 9: TODAY'S VIEW
+   SCREEN 9: LIVE REPLAN SCENARIOS
 ══════════════════════════════════════════════════════════════════ */
 #s9 {
+  background: var(--bg);
+  padding: 48px 72px 56px;
+  display: flex; flex-direction: column; gap: 28px;
+}
+.rp-header {
+  display: flex; justify-content: space-between; align-items: flex-start;
+  animation: fadeInUp 0.6s both;
+}
+.rp-header-left h2 { font-size: 38px; font-weight: 900; letter-spacing: -0.03em; }
+.rp-header-left p { font-size: 16px; color: var(--text2); margin-top: 8px; }
+.rp-ai-badge {
+  display: flex; align-items: center; gap: 8px; padding: 8px 16px;
+  background: rgba(43,92,230,0.15); border: 1px solid rgba(77,127,255,0.3);
+  border-radius: 20px; font-size: 13px; font-weight: 700; color: var(--blue-bright);
+}
+.rp-ai-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 1.5s infinite; }
+
+.rp-body { display: grid; grid-template-columns: 260px 1fr; gap: 24px; flex: 1; min-height: 0; }
+
+/* Scenario selector */
+.rp-scenarios { display: flex; flex-direction: column; gap: 12px; }
+.rp-scenario-btn {
+  padding: 18px 20px; border-radius: 16px; cursor: pointer;
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.1);
+  transition: all 0.25s; text-align: left;
+}
+.rp-scenario-btn:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.2); }
+.rp-scenario-btn.active {
+  background: linear-gradient(135deg,rgba(43,92,230,0.25),rgba(43,92,230,0.1));
+  border-color: rgba(77,127,255,0.5); box-shadow: 0 0 20px rgba(43,92,230,0.2);
+}
+.rp-sc-num { font-size: 11px; font-weight: 900; color: var(--text3); letter-spacing: 0.1em; font-family: var(--font-en); margin-bottom: 6px; }
+.rp-sc-title { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+.rp-sc-desc { font-size: 12px; color: var(--text2); line-height: 1.4; }
+.rp-scenario-btn.active .rp-sc-title { color: var(--blue-bright); }
+
+/* Schedule Grid */
+.rp-sched-wrap { display: flex; flex-direction: column; gap: 16px; }
+.rp-sched-header { display: grid; grid-template-columns: 56px repeat(7,1fr); gap: 6px; }
+.rp-sched-day { font-size: 11px; font-weight: 700; color: var(--text3); text-align: center; font-family: var(--font-en); padding: 4px 0; }
+.rp-sched-day.today { color: var(--blue-bright); }
+.rp-sched-grid { display: flex; flex-direction: column; gap: 6px; }
+.rp-sched-row { display: grid; grid-template-columns: 56px repeat(7,1fr); gap: 6px; align-items: stretch; }
+.rp-time-label { font-size: 11px; font-weight: 700; color: var(--text3); font-family: var(--font-en); display: flex; align-items: center; padding-right: 8px; }
+.rp-cell {
+  height: 72px; border-radius: 10px; padding: 8px 10px;
+  display: flex; flex-direction: column; justify-content: center; gap: 3px;
+  font-size: 11px; font-weight: 700; transition: all 0.5s cubic-bezier(0.34,1.56,0.64,1);
+  border: 1px solid transparent; cursor: default;
+}
+.rp-cell.empty { background: rgba(255,255,255,0.03); border-color: rgba(255,255,255,0.06); color: var(--text3); font-weight: 400; font-size: 10px; }
+.rp-cell.kbo { background: linear-gradient(135deg,#0d2055,#1B3B8A); border-color: rgba(43,92,230,0.4); color: #7faaff; }
+.rp-cell.netflix { background: linear-gradient(135deg,#3D0000,#750000); border-color: rgba(229,9,20,0.4); color: #ff8080; }
+.rp-cell.disney { background: linear-gradient(135deg,#051e57,#0d3080); border-color: rgba(26,86,196,0.5); color: #80b0ff; }
+.rp-cell.youtube { background: linear-gradient(135deg,#1a1a1a,#282828); border-color: rgba(255,0,0,0.3); color: #ff6b6b; }
+.rp-cell.tving { background: linear-gradient(135deg,#3d0010,#750020); border-color: rgba(255,21,60,0.4); color: #ff8080; }
+.rp-cell.sgov { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.08); color: var(--text3); }
+.rp-cell-name { font-size: 11px; font-weight: 800; line-height: 1.2; }
+.rp-cell-sub { font-size: 10px; font-weight: 500; opacity: 0.75; line-height: 1.2; }
+.rp-cell.highlight {
+  transform: scale(1.04) translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0,212,106,0.25);
+  border-color: var(--green) !important;
+}
+.rp-cell.changed {
+  animation: cellPop 0.6s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+.rp-cell.swapped {
+  animation: cellSwap 0.7s ease both;
+}
+.rp-cell.shifted {
+  animation: cellShift 0.6s ease both;
+}
+@keyframes cellPop { 0%{transform:scale(0.9);opacity:0.4} 60%{transform:scale(1.08)} 100%{transform:scale(1.04) translateY(-2px)} }
+@keyframes cellSwap { 0%{opacity:0;transform:translateY(10px)} 100%{opacity:1;transform:translateY(0)} }
+@keyframes cellShift { 0%{opacity:0.3;background:rgba(255,150,0,0.2)} 100%{opacity:1} }
+
+.rp-status {
+  padding: 14px 20px; border-radius: 12px;
+  background: rgba(0,212,106,0.08); border: 1px solid rgba(0,212,106,0.25);
+  font-size: 13px; font-weight: 600; color: var(--green);
+  display: flex; align-items: center; gap: 10px;
+  transition: all 0.5s;
+}
+.rp-status-icon { font-size: 18px; }
+.rp-status-text { line-height: 1.4; }
+.rp-status-text strong { display: block; font-size: 15px; margin-bottom: 2px; }
+
+/* ═══════════════════════════════════════════════════════════════
+   SCREEN 10: TODAY'S VIEW
+══════════════════════════════════════════════════════════════════ */
+#s10 {
   background: var(--bg);
   padding: 56px 90px;
   display: grid; grid-template-columns: 1.3fr 1fr; gap: 60px; align-items: start;
@@ -1075,9 +1167,9 @@ body { font-family: var(--font-kr); color: var(--text); }
 .ui-duration { font-size: 13px; font-weight: 700; color: var(--text3); font-family: var(--font-en); }
 
 /* ═══════════════════════════════════════════════════════════════
-   SCREEN 10: AUTO WAKE
+   SCREEN 11: AUTO WAKE
 ══════════════════════════════════════════════════════════════════ */
-#s10 {
+#s11 {
   background: #000;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 0; position: relative;
@@ -1134,9 +1226,9 @@ body { font-family: var(--font-kr); color: var(--text); }
 }
 
 /* ═══════════════════════════════════════════════════════════════
-   SCREEN 11: EXECUTIVE VIEW
+   SCREEN 12: EXECUTIVE VIEW
 ══════════════════════════════════════════════════════════════════ */
-#s11 {
+#s12 {
   background:
     radial-gradient(ellipse at 20% 16%, rgba(77,127,255,0.22) 0%, transparent 34%),
     radial-gradient(ellipse at 85% 90%, rgba(0,212,106,0.12) 0%, transparent 36%),
@@ -1144,10 +1236,10 @@ body { font-family: var(--font-kr); color: var(--text); }
   padding: 46px 68px 58px;
   display: flex; flex-direction: column; gap: 24px;
 }
-#s11 .s11-header { display: flex; justify-content: space-between; align-items: flex-end; animation: fadeInUp 0.7s both; }
-#s11 .s11-header .label-xs { margin-bottom: 10px; display: block; }
-#s11 .s11-header h2 { font-size: 42px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.14; }
-#s11 .s11-header p { font-size: 17px; color: var(--text2); margin-top: 10px; line-height: 1.55; max-width: 880px; }
+#s12 .s12-header { display: flex; justify-content: space-between; align-items: flex-end; animation: fadeInUp 0.7s both; }
+#s12 .s12-header .label-xs { margin-bottom: 10px; display: block; }
+#s12 .s12-header h2 { font-size: 42px; font-weight: 900; letter-spacing: -0.03em; line-height: 1.14; }
+#s12 .s12-header p { font-size: 17px; color: var(--text2); margin-top: 10px; line-height: 1.55; max-width: 880px; }
 .exec-badge {
   display: inline-flex; align-items: center; justify-content: center;
   min-width: 190px; height: 42px; border-radius: 100px;
@@ -1258,16 +1350,16 @@ body { font-family: var(--font-kr); color: var(--text); }
 .evo-desc { font-size: 13px; color: var(--text2); text-align: center; line-height: 1.55; max-width: 190px; }
 .evo-tag { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 100px; background: rgba(43,92,230,0.2); color: var(--blue-bright); border: 1px solid rgba(43,92,230,0.3); }
 
-.s11-vision {
+.s12-vision {
   text-align: center; animation: fadeIn 0.7s 1.5s both; opacity: 0;
 }
-.s11-vision .big-quote {
+.s12-vision .big-quote {
   font-size: 60px; font-weight: 900; letter-spacing: -0.04em;
   background: linear-gradient(135deg, #fff 0%, var(--blue-bright) 100%);
   -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   line-height: 1.1;
 }
-.s11-vision p { font-size: 20px; color: var(--text2); margin-top: 16px; }
+.s12-vision p { font-size: 20px; color: var(--text2); margin-top: 16px; }
 
 /* ── FOCUSED OUTLINE for all focusable items ─── */
 [tabindex]:focus { outline: none; }
@@ -1709,6 +1801,60 @@ body { font-family: var(--font-kr); color: var(--text); }
 /* S5 tabs - TV style */
 .s5-tab { background:rgba(255,255,255,0.04) !important; color:rgba(255,255,255,0.5) !important; border-color:rgba(255,255,255,0.1) !important; box-shadow:none !important; }
 .s5-tab.active, .s5-tab.focused { background:rgba(255,255,255,0.12) !important; color:#fff !important; border-color:rgba(255,255,255,0.3) !important; box-shadow:none !important; }
+
+/* S5 Detail Modal */
+.s5-modal-overlay {
+  position: absolute; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.75); backdrop-filter: blur(8px);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+.s5-modal-overlay.open {
+  opacity: 1; pointer-events: all;
+}
+.s5-modal-card {
+  width: 680px; background: linear-gradient(160deg,#0d1b3e,#0a1025);
+  border: 1px solid rgba(255,255,255,0.15); border-radius: 24px;
+  padding: 40px 48px; position: relative;
+  animation: scaleIn 0.3s both;
+}
+.s5-modal-close {
+  position: absolute; top: 20px; right: 24px;
+  font-size: 20px; color: var(--text3); cursor: pointer;
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border-radius: 50%; background: rgba(255,255,255,0.06);
+  transition: background 0.2s;
+}
+.s5-modal-close:hover { background: rgba(255,255,255,0.15); color: #fff; }
+.s5-modal-pb { display: inline-flex; margin-bottom: 18px; }
+.s5-modal-title { font-size: 32px; font-weight: 900; letter-spacing: -0.02em; margin-bottom: 8px; }
+.s5-modal-meta { font-size: 15px; color: var(--text2); margin-bottom: 14px; }
+.s5-modal-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 20px; }
+.s5-modal-tag { font-size: 12px; font-weight: 700; color: var(--text3);
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 20px; padding: 4px 12px; }
+.s5-modal-schedule {
+  background: rgba(43,92,230,0.18); border: 1px solid rgba(77,127,255,0.3);
+  border-radius: 12px; padding: 14px 18px; font-size: 14px; color: var(--blue-bright);
+  margin-bottom: 28px; font-weight: 600;
+}
+.s5-modal-desc { font-size: 14px; color: var(--text2); line-height: 1.6; margin-bottom: 28px; }
+.s5-modal-actions { display: flex; gap: 12px; }
+.s5-modal-btn-primary {
+  flex: 1; padding: 14px; border-radius: 12px; border: none; cursor: pointer;
+  background: linear-gradient(135deg,#2B5CE6,#1428A0); color: #fff;
+  font-size: 15px; font-weight: 700; font-family: inherit;
+  transition: opacity 0.2s;
+}
+.s5-modal-btn-primary:hover { opacity: 0.85; }
+.s5-modal-btn-secondary {
+  padding: 14px 20px; border-radius: 12px; cursor: pointer;
+  background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.15);
+  color: var(--text2); font-size: 15px; font-weight: 600; font-family: inherit;
+  transition: background 0.2s;
+}
+.s5-modal-btn-secondary:hover { background: rgba(255,255,255,0.12); color: #fff; }
 </style>
 </head>
 <body>
@@ -1918,17 +2064,17 @@ body { font-family: var(--font-kr); color: var(--text); }
 
     <div class="connection-stage">
       <!-- SVG Lines -->
-      <svg class="conn-svg" viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg">
-        <line id="l-netflix" x1="135" y1="116" x2="350" y2="190" class="conn-line"/>
-        <line id="l-youtube" x1="135" y1="266" x2="350" y2="250" class="conn-line"/>
-        <line id="l-disney"  x1="765" y1="116" x2="550" y2="190" class="conn-line"/>
-        <line id="l-tving"   x1="765" y1="266" x2="550" y2="250" class="conn-line"/>
-        <line id="l-kbo"     x1="450" y1="36"  x2="450" y2="150" class="conn-line"/>
-        <circle id="d-netflix" class="conn-dot" cx="350" cy="190" r="4"/>
-        <circle id="d-youtube" class="conn-dot" cx="350" cy="250" r="4"/>
-        <circle id="d-disney"  class="conn-dot" cx="550" cy="190" r="4"/>
-        <circle id="d-tving"   class="conn-dot" cx="550" cy="250" r="4"/>
-        <circle id="d-kbo"     class="conn-dot" cx="450" cy="150" r="4"/>
+      <svg class="conn-svg" viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg">
+        <line id="l-netflix" x1="105" y1="96"  x2="350" y2="150" class="conn-line"/>
+        <line id="l-youtube" x1="105" y1="266" x2="350" y2="230" class="conn-line"/>
+        <line id="l-disney"  x1="795" y1="96"  x2="550" y2="150" class="conn-line"/>
+        <line id="l-tving"   x1="795" y1="266" x2="550" y2="230" class="conn-line"/>
+        <line id="l-kbo"     x1="450" y1="44"  x2="450" y2="120" class="conn-line"/>
+        <circle id="d-netflix" class="conn-dot" cx="350" cy="150" r="5"/>
+        <circle id="d-youtube" class="conn-dot" cx="350" cy="230" r="5"/>
+        <circle id="d-disney"  class="conn-dot" cx="550" cy="150" r="5"/>
+        <circle id="d-tving"   class="conn-dot" cx="550" cy="230" r="5"/>
+        <circle id="d-kbo"     class="conn-dot" cx="450" cy="120" r="5"/>
       </svg>
 
       <!-- TV Center -->
@@ -1938,27 +2084,27 @@ body { font-family: var(--font-kr); color: var(--text); }
       </div>
 
       <!-- Platform Nodes -->
-      <div class="platform-node" id="pn-netflix" style="left:60px;top:80px;">
+      <div class="platform-node" id="pn-netflix" style="left:30px;top:60px;">
         <div class="platform-icon pi-netflix">NETFLIX</div>
         <div class="pname">Netflix</div>
         <div class="pcount">찜 23개 연결됨 ✓</div>
       </div>
-      <div class="platform-node" id="pn-youtube" style="left:60px;top:230px;">
+      <div class="platform-node" id="pn-youtube" style="left:30px;top:230px;">
         <div class="platform-icon pi-youtube">▶ YouTube</div>
         <div class="pname">YouTube</div>
         <div class="pcount">Watch Later 18개 ✓</div>
       </div>
-      <div class="platform-node" id="pn-disney" style="left:690px;top:80px;">
+      <div class="platform-node" id="pn-disney" style="left:720px;top:60px;">
         <div class="platform-icon pi-disney">Disney+</div>
         <div class="pname">Disney+</div>
         <div class="pcount">나중에 볼 6개 ✓</div>
       </div>
-      <div class="platform-node" id="pn-tving" style="left:690px;top:230px;">
+      <div class="platform-node" id="pn-tving" style="left:720px;top:230px;">
         <div class="platform-icon pi-tving">tving</div>
         <div class="pname">Tving</div>
         <div class="pcount">찜 4개 ✓</div>
       </div>
-      <div class="platform-node" id="pn-kbo" style="left:50%;top:0;transform:translateX(-50%);">
+      <div class="platform-node" id="pn-kbo" style="left:375px;top:8px;">
         <div class="platform-icon pi-kbo">KBO</div>
         <div class="pname">KBO 리그</div>
         <div class="pcount">삼성 일정 연결됨 ✓</div>
@@ -1997,7 +2143,7 @@ body { font-family: var(--font-kr); color: var(--text); }
           <span class="rh-more">더 보기 ›</span>
         </div>
         <div class="tv-rail-cards" id="rail1-cards">
-          <div class="tv-card focused" data-info="오징어 게임 S3|Netflix · 9회 완결 · 52분/회 · 총 7.8시간">
+          <div class="tv-card focused" data-info="오징어 게임 S3|Netflix · 9회 완결 · 52분/회 · 총 7.8시간" data-detail='{"title":"오징어 게임 시즌 3","platform":"NETFLIX","pbClass":"pb-netflix","meta":"9회 완결 · 52분/회 · 총 7.8시간","tags":"드라마,스릴러,한국","schedule":"오늘 20:00 편성 예정 · 빈지워칭 추천","desc":"전 세계 456명이 거대한 상금을 두고 목숨을 건 서바이벌 게임에 참여합니다. 시즌 3는 시즌 2의 충격적 결말에서 이어집니다."}'>
             <div class="tv-thumb ct-squid">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-netflix">NETFLIX</span></div>
@@ -2010,7 +2156,7 @@ body { font-family: var(--font-kr); color: var(--text); }
               <div class="tv-progress"><div class="tv-progress-fill" style="width:0%;background:#E50914;"></div></div>
             </div>
           </div>
-          <div class="tv-card" data-info="흑백요리사 S2|Netflix · 연재중 · 65분/회 · 매주 목요일">
+          <div class="tv-card" data-info="흑백요리사 S2|Netflix · 연재중 · 65분/회 · 매주 목요일" data-detail='{"title":"흑백요리사 시즌 2","platform":"NETFLIX","pbClass":"pb-netflix","meta":"연재중 · 65분/회 · 매주 목요일","tags":"예능,요리,경쟁","schedule":"목 22:00 편성 · 신규 공개","desc":"대한민국 최고의 셰프들이 흑백 요리사로 나뉘어 극한의 요리 배틀을 펼칩니다. 시즌 2는 더 강력한 미션과 반전으로 돌아왔습니다."}'>
             <div class="tv-thumb ct-chef">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-netflix">NETFLIX</span></div>
@@ -2022,7 +2168,7 @@ body { font-family: var(--font-kr); color: var(--text); }
               <div class="tv-card-meta">목 22:00 · 신규 공개</div>
             </div>
           </div>
-          <div class="tv-card" data-info="안도르 시즌 2|Disney+ · 12회 완결 · 50분/회 · 총 10시간">
+          <div class="tv-card" data-info="안도르 시즌 2|Disney+ · 12회 완결 · 50분/회 · 총 10시간" data-detail='{"title":"Andor 시즌 2","platform":"Disney+","pbClass":"pb-disney","meta":"12회 완결 · 50분/회 · 총 10시간","tags":"SF,액션,스파이","schedule":"일 오후 편성 · 연속 시청 예정","desc":"카시안 안도르가 갈렉시에서 가장 위험한 반란군 스파이가 되어가는 여정. 스타워즈 유니버스 최고의 리얼리즘."}'>
             <div class="tv-thumb ct-andor">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-disney">Disney+</span></div>
@@ -2034,7 +2180,7 @@ body { font-family: var(--font-kr); color: var(--text); }
               <div class="tv-card-meta">일 오후 · 연속 시청 예정</div>
             </div>
           </div>
-          <div class="tv-card" data-info="환승연애 4|Tving · 8회 완결 · 70분/회">
+          <div class="tv-card" data-info="환승연애 4|Tving · 8회 완결 · 70분/회" data-detail='{"title":"환승연애 4","platform":"tving","pbClass":"pb-tving","meta":"8회 완결 · 70분/회","tags":"연애,리얼리티,한국","schedule":"주말 22:00 편성 예정","desc":"전 연인과 새로운 연인 사이에서 벌어지는 감정 롤러코스터. 시즌 4는 더 복잡한 관계도와 예측 불가한 전개."}'>
             <div class="tv-thumb ct-hwans">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-tving">tving</span></div>
@@ -2046,7 +2192,7 @@ body { font-family: var(--font-kr); color: var(--text); }
               <div class="tv-card-meta">주말 22:00 예정</div>
             </div>
           </div>
-          <div class="tv-card" data-info="나폴리는 왜|Netflix · 공개예정 · 6월 15일">
+          <div class="tv-card" data-info="나폴리는 왜|Netflix · 공개예정 · 6월 15일" data-detail='{"title":"나폴리는 왜","platform":"NETFLIX","pbClass":"pb-netflix","meta":"공개예정 · 6월 15일","tags":"드라마,이탈리아,공개예정","schedule":"6월 15일 공개 예정 · 시청 알람 설정됨","desc":"이탈리아 나폴리를 배경으로 한 가족 서사시. 공개 후 편성에 자동 추가됩니다."}'>
             <div class="tv-thumb ct-napo">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-netflix">NETFLIX</span></div>
@@ -2069,7 +2215,7 @@ body { font-family: var(--font-kr); color: var(--text); }
           <span class="rh-more">더 보기 ›</span>
         </div>
         <div class="tv-rail-cards" id="rail2-cards">
-          <div class="tv-card" data-info="삼성 라이온즈 vs KIA|KBO · 오늘 화요일 19:00 · LIVE">
+          <div class="tv-card" data-info="삼성 라이온즈 vs KIA|KBO · 오늘 화요일 19:00 · LIVE" data-detail='{"title":"삼성 라이온즈 vs KIA 타이거즈","platform":"KBO","pbClass":"pb-kbo","meta":"오늘 화요일 19:00 · 정규시즌","tags":"야구,KBO,LIVE","schedule":"오늘 19:00 LIVE 중계 시작","desc":"삼성 라이온즈 홈경기. 삼성 캘린더와 연동되어 자동 편성되었습니다. 경기 종료 후 오징어 게임 S3 자동 전환."}'>
             <div class="tv-thumb ct-kbo">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-kbo">KBO</span></div>
@@ -2081,7 +2227,7 @@ body { font-family: var(--font-kr); color: var(--text); }
               <div class="tv-card-meta">오늘 · 오후 7시</div>
             </div>
           </div>
-          <div class="tv-card" data-info="삼성 라이온즈 vs LG|KBO · 목요일 19:00 · LIVE">
+          <div class="tv-card" data-info="삼성 라이온즈 vs LG|KBO · 목요일 19:00 · LIVE" data-detail='{"title":"삼성 라이온즈 vs LG 트윈스","platform":"KBO","pbClass":"pb-kbo","meta":"목요일 19:00 · 정규시즌","tags":"야구,KBO,LIVE","schedule":"목 19:00 LIVE 중계 · 자동 편성","desc":"목요일 삼성-LG 라이벌 매치. 삼성 캘린더 일정과 자동 연동."}'>
             <div class="tv-thumb ct-kbo2">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-kbo">KBO</span></div>
@@ -2093,7 +2239,7 @@ body { font-family: var(--font-kr); color: var(--text); }
               <div class="tv-card-meta">목요일 · 오후 7시</div>
             </div>
           </div>
-          <div class="tv-card" data-info="삼성 라이온즈 vs 롯데 (홈)|KBO · 토요일 14:00 · 홈경기">
+          <div class="tv-card" data-info="삼성 라이온즈 vs 롯데 (홈)|KBO · 토요일 14:00 · 홈경기" data-detail='{"title":"삼성 라이온즈 vs 롯데 자이언츠 (홈)","platform":"KBO","pbClass":"pb-kbo","meta":"토요일 14:00 · 홈경기","tags":"야구,KBO,홈경기","schedule":"토 14:00 LIVE 중계 · 홈경기","desc":"대구 라이온즈 파크 홈경기. 토요일 오후 가족 시청 타임슬롯에 자동 배치."}'>
             <div class="tv-thumb ct-kbo3">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-kbo">KBO</span></div>
@@ -2116,7 +2262,7 @@ body { font-family: var(--font-kr); color: var(--text); }
           <span class="rh-more">더 보기 ›</span>
         </div>
         <div class="tv-rail-cards" id="rail3-cards">
-          <div class="tv-card" data-info="갤럭시 S25 언박싱|YouTube · 18분 · 구독 채널">
+          <div class="tv-card" data-info="갤럭시 S25 언박싱|YouTube · 18분 · 구독 채널" data-detail='{"title":"갤럭시 S25 언박싱 리뷰","platform":"YouTube","pbClass":"pb-youtube","meta":"18분 · 구독 채널 · Watch Later","tags":"테크,리뷰,Samsung","schedule":"월 18:00 편성 예정 · 짧은 슬롯","desc":"Watch Later에 저장된 영상. 퇴근 후 짧은 시청 슬롯에 자동 배치되었습니다."}'>
             <div class="tv-thumb ct-yt1" style="align-items:center;justify-content:center;">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-youtube">▶</span></div>
@@ -2128,7 +2274,7 @@ body { font-family: var(--font-kr); color: var(--text); }
               <div class="tv-card-meta">월 18:00 예정</div>
             </div>
           </div>
-          <div class="tv-card" data-info="2024 재테크 총정리|YouTube · 35분 · Watch Later">
+          <div class="tv-card" data-info="2024 재테크 총정리|YouTube · 35분 · Watch Later" data-detail='{"title":"2026 재테크 총정리","platform":"YouTube","pbClass":"pb-youtube","meta":"35분 · Watch Later","tags":"재테크,경제,정보","schedule":"수 18:00 편성 예정","desc":"Watch Later에 저장된 경제 정보 영상. 평일 저녁 짧은 여유 시간 슬롯에 배치."}'>
             <div class="tv-thumb ct-yt2" style="align-items:center;justify-content:center;">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-youtube">▶</span></div>
@@ -2140,7 +2286,7 @@ body { font-family: var(--font-kr); color: var(--text); }
               <div class="tv-card-meta">수 18:00 예정</div>
             </div>
           </div>
-          <div class="tv-card" data-info="드라마 OST 모음|YouTube · 42분 · Watch Later">
+          <div class="tv-card" data-info="드라마 OST 모음|YouTube · 42분 · Watch Later" data-detail='{"title":"드라마 OST 명장면 모음","platform":"YouTube","pbClass":"pb-youtube","meta":"42분 · Watch Later","tags":"음악,OST,힐링","schedule":"금 18:00 편성 예정 · 주말 전 여유","desc":"Watch Later에 저장된 음악 영상. 금요일 저녁 힐링 타임슬롯에 자동 배치."}'>
             <div class="tv-thumb ct-yt3" style="align-items:center;justify-content:center;">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-youtube">▶</span></div>
@@ -2152,7 +2298,7 @@ body { font-family: var(--font-kr); color: var(--text); }
               <div class="tv-card-meta">금 18:00 예정</div>
             </div>
           </div>
-          <div class="tv-card" data-info="MrBeast 한국편|YouTube · 28분 · 신규">
+          <div class="tv-card" data-info="MrBeast 한국편|YouTube · 28분 · 신규" data-detail='{"title":"MrBeast 한국 도전기","platform":"YouTube","pbClass":"pb-youtube","meta":"28분 · 신규 업로드","tags":"엔터테인먼트,글로벌,신규","schedule":"신규 업로드 · 빠른 슬롯 배치","desc":"구독 채널 MrBeast의 신규 영상. 빠른 시청 슬롯에 우선 배치되었습니다."}'>
             <div class="tv-thumb ct-mrb" style="align-items:center;justify-content:center;">
               <div class="tv-thumb-grad"></div>
               <div class="tv-thumb-badge"><span class="platform-badge pb-youtube">▶</span></div>
@@ -2310,14 +2456,24 @@ body { font-family: var(--font-kr); color: var(--text); }
         </div>
       </div>
     </div>
-    <div class="cc-detail-panel" id="s5-detail">
-      <div style="font-size:24px;">🎬</div>
-      <div class="sep" style="width:1px;height:36px;background:var(--border2);"></div>
-      <div>
-        <div class="cc-detail-title" id="s5-detail-title">오징어 게임 시즌 3</div>
-        <div class="cc-detail-meta" id="s5-detail-meta">Netflix · 9회 완결 · 52분/회 · 총 7.8시간</div>
+    <div class="s5-modal-overlay" id="s5-modal">
+      <div class="s5-modal-card">
+        <div class="s5-modal-close" id="s5-modal-close">✕</div>
+        <div class="s5-modal-pb"><span class="platform-badge" id="s5-modal-pbadge">NETFLIX</span></div>
+        <div class="s5-modal-title" id="s5-modal-title">오징어 게임 시즌 3</div>
+        <div class="s5-modal-meta" id="s5-modal-meta">9회 완결 · 52분/회 · 총 7.8시간</div>
+        <div class="s5-modal-tags" id="s5-modal-tags">
+          <span class="s5-modal-tag">드라마</span>
+          <span class="s5-modal-tag">스릴러</span>
+          <span class="s5-modal-tag">한국</span>
+        </div>
+        <div class="s5-modal-schedule" id="s5-modal-schedule">📅 오늘 20:00 편성 예정 · 빈지워칭 추천</div>
+        <div class="s5-modal-desc" id="s5-modal-desc">전 세계 456명이 거대한 상금을 두고 목숨을 건 서바이벌 게임에 참여합니다. 시즌 3는 시즌 2의 충격적 결말에서 이어집니다.</div>
+        <div class="s5-modal-actions">
+          <button class="s5-modal-btn-primary">▶ 지금 시청하기</button>
+          <button class="s5-modal-btn-secondary" id="s5-modal-close2">편성에서 제외</button>
+        </div>
       </div>
-      <div style="margin-left:auto;font-size:13px;color:var(--text3);">Enter ↵ 상세보기</div>
     </div>
   </section>
 
@@ -2814,8 +2970,99 @@ body { font-family: var(--font-kr); color: var(--text); }
     </div>
   </section>
 
-  <!-- ⑨ TODAY'S VIEW ────────────────────────────────────────── -->
+  <!-- ⑨ LIVE REPLAN SCENARIOS ──────────────────────────────── -->
   <section class="screen" id="s9">
+    <div class="rp-header">
+      <div class="rp-header-left">
+        <span class="label-xs">Live Replan Engine · AI Scheduling</span>
+        <h2>편성표는 실시간으로 살아있습니다</h2>
+        <p>시청 데이터·생활 패턴·신규 콘텐츠 추가에 따라 자동으로 최적화됩니다</p>
+      </div>
+      <div class="rp-ai-badge"><div class="rp-ai-dot"></div>AI Agent · 실시간</div>
+    </div>
+
+    <div class="rp-body">
+      <!-- Left: Scenario buttons -->
+      <div class="rp-scenarios">
+        <div class="rp-scenario-btn active" data-scenario="1" onclick="rpSelectScenario(1)">
+          <div class="rp-sc-num">SCENARIO 01</div>
+          <div class="rp-sc-title">시청 데이터 학습</div>
+          <div class="rp-sc-desc">시청 이력이 쌓이면서 다음 화 편성이 자동 조정됩니다</div>
+        </div>
+        <div class="rp-scenario-btn" data-scenario="2" onclick="rpSelectScenario(2)">
+          <div class="rp-sc-num">SCENARIO 02</div>
+          <div class="rp-sc-title">신규 콘텐츠 추가</div>
+          <div class="rp-sc-desc">찜 목록에 추가 시 기존 슬롯에서 핏이 낮은 콘텐츠와 교체</div>
+        </div>
+        <div class="rp-scenario-btn" data-scenario="3" onclick="rpSelectScenario(3)">
+          <div class="rp-sc-num">SCENARIO 03</div>
+          <div class="rp-sc-title">일상 데이터 변동</div>
+          <div class="rp-sc-desc">늦은 귀가·회식 감지 시 당일 편성을 자동 조정</div>
+        </div>
+      </div>
+
+      <!-- Right: Schedule grid + status -->
+      <div class="rp-sched-wrap">
+        <div class="rp-sched-header">
+          <div></div>
+          <div class="rp-sched-day today">화 (오늘)</div>
+          <div class="rp-sched-day">수</div>
+          <div class="rp-sched-day">목</div>
+          <div class="rp-sched-day">금</div>
+          <div class="rp-sched-day">토</div>
+          <div class="rp-sched-day">일</div>
+          <div class="rp-sched-day">월</div>
+        </div>
+        <div class="rp-sched-grid" id="rp-grid">
+          <!-- Row: 19:00 -->
+          <div class="rp-sched-row">
+            <div class="rp-time-label">19:00</div>
+            <div class="rp-cell kbo" id="rp-tue-19"><div class="rp-cell-name">삼성 vs KIA</div><div class="rp-cell-sub">KBO LIVE</div></div>
+            <div class="rp-cell empty" id="rp-wed-19"><div class="rp-cell-name">—</div></div>
+            <div class="rp-cell kbo" id="rp-thu-19"><div class="rp-cell-name">삼성 vs LG</div><div class="rp-cell-sub">KBO LIVE</div></div>
+            <div class="rp-cell youtube" id="rp-fri-19"><div class="rp-cell-name">재테크 총정리</div><div class="rp-cell-sub">YouTube · 35분</div></div>
+            <div class="rp-cell kbo" id="rp-sat-19"><div class="rp-cell-name">삼성 vs 롯데</div><div class="rp-cell-sub">KBO LIVE 14:00</div></div>
+            <div class="rp-cell disney" id="rp-sun-19"><div class="rp-cell-name">Andor S2</div><div class="rp-cell-sub">EP.3 · 50분</div></div>
+            <div class="rp-cell youtube" id="rp-mon-19"><div class="rp-cell-name">갤럭시 S25</div><div class="rp-cell-sub">YouTube · 18분</div></div>
+          </div>
+          <!-- Row: 21:00 -->
+          <div class="rp-sched-row">
+            <div class="rp-time-label">21:00</div>
+            <div class="rp-cell netflix" id="rp-tue-21"><div class="rp-cell-name">오징어 게임 S3</div><div class="rp-cell-sub">EP.2 · 52분</div></div>
+            <div class="rp-cell netflix" id="rp-wed-21"><div class="rp-cell-name">오징어 게임 S3</div><div class="rp-cell-sub">EP.3 · 52분</div></div>
+            <div class="rp-cell empty" id="rp-thu-21"><div class="rp-cell-name">—</div></div>
+            <div class="rp-cell youtube" id="rp-fri-21"><div class="rp-cell-name">OST 명장면</div><div class="rp-cell-sub">YouTube · 42분</div></div>
+            <div class="rp-cell netflix" id="rp-sat-21"><div class="rp-cell-name">흑백요리사 S2</div><div class="rp-cell-sub">EP.6 · 65분</div></div>
+            <div class="rp-cell disney" id="rp-sun-21"><div class="rp-cell-name">Andor S2</div><div class="rp-cell-sub">EP.4 · 50분</div></div>
+            <div class="rp-cell empty" id="rp-mon-21"><div class="rp-cell-name">—</div></div>
+          </div>
+          <!-- Row: 22:30 -->
+          <div class="rp-sched-row">
+            <div class="rp-time-label">22:30</div>
+            <div class="rp-cell youtube" id="rp-tue-22"><div class="rp-cell-name">MrBeast 한국</div><div class="rp-cell-sub">YouTube · 28분</div></div>
+            <div class="rp-cell tving" id="rp-wed-22"><div class="rp-cell-name">환승연애 4</div><div class="rp-cell-sub">EP.1 · 70분</div></div>
+            <div class="rp-cell tving" id="rp-thu-22"><div class="rp-cell-name">환승연애 4</div><div class="rp-cell-sub">EP.2 · 70분</div></div>
+            <div class="rp-cell empty" id="rp-fri-22"><div class="rp-cell-name">—</div></div>
+            <div class="rp-cell empty" id="rp-sat-22"><div class="rp-cell-name">—</div></div>
+            <div class="rp-cell netflix" id="rp-sun-22"><div class="rp-cell-name">흑백요리사 S2</div><div class="rp-cell-sub">EP.5 · 65분 (선행)</div></div>
+            <div class="rp-cell empty" id="rp-mon-22"><div class="rp-cell-name">—</div></div>
+          </div>
+        </div>
+
+        <!-- Status bar -->
+        <div class="rp-status" id="rp-status">
+          <div class="rp-status-icon">📊</div>
+          <div class="rp-status-text">
+            <strong>시나리오를 선택하면 편성표가 실시간으로 변경됩니다</strong>
+            시청 데이터, 신규 콘텐츠, 생활 패턴 변화에 자동 대응합니다
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ⑩ TODAY'S VIEW ────────────────────────────────────────── -->
+  <section class="screen" id="s10">
     <div class="s9-left">
       <span class="label-xs">Tonight's Lineup · 화요일</span>
       <div class="s9-date">
@@ -2890,8 +3137,8 @@ body { font-family: var(--font-kr); color: var(--text); }
     </div>
   </section>
 
-  <!-- ⑩ AUTO WAKE ────────────────────────────────────────────── -->
-  <section class="screen" id="s10">
+  <!-- ⑪ AUTO WAKE ────────────────────────────────────────────── -->
+  <section class="screen" id="s11">
     <div class="aw-bg"></div>
     <div class="aw-clock" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);">19:00</div>
     <div class="aw-logo">
@@ -2915,9 +3162,9 @@ body { font-family: var(--font-kr); color: var(--text); }
     </div>
   </section>
 
-  <!-- ⑪ EXECUTIVE VIEW ──────────────────────────────────────── -->
-  <section class="screen" id="s11">
-    <div class="s11-header">
+  <!-- ⑫ EXECUTIVE VIEW ──────────────────────────────────────── -->
+  <section class="screen" id="s12">
+    <div class="s12-header">
       <div>
         <span class="label-xs">Executive View · VD Service Strategy</span>
         <h2>TV OS를 추천 화면에서<br>생활 편성 Agent로 전환</h2>
@@ -3021,7 +3268,7 @@ body { font-family: var(--font-kr); color: var(--text); }
   <div class="row"><div class="nav-key">↓</div></div>
   <div class="row"><div class="nav-key wide">BACK</div></div>
 </div>
-<div id="screen-counter">01 / 11</div>
+<div id="screen-counter">01 / 12</div>
 <div id="progress-dots"></div>
 
 <script>
@@ -3039,7 +3286,7 @@ window.addEventListener('resize', scaleApp);
 scaleApp();
 
 // ── SCREEN MANAGEMENT ────────────────────────────────────────
-const TOTAL_SCREENS = 11;
+const TOTAL_SCREENS = 12;
 let currentScreen = 1;
 const counter = document.getElementById('screen-counter');
 const dotsContainer = document.getElementById('progress-dots');
@@ -3078,6 +3325,7 @@ function onScreenEnter(n) {
   if (n === 5) initRailNav();
   if (n === 7) initAgentAnim();
   if (n === 8) { initScheduleAnim(); initScheduleNav(); startReplanScenario(); }
+  if (n === 9) initReplanScreen();
 }
 
 // ── SCREEN 7: AGENT SCHEDULE BUILDER ─────────────────────────
@@ -3287,13 +3535,203 @@ function walletMove(dir) {
   updateWalletFocus();
 }
 
-// Tabs
-document.querySelectorAll('.s5-tab').forEach((tab, i) => {
+// S5 Tabs - filter rails
+const TAB_RAIL_MAP = {
+  'all':      [0, 1, 2],
+  'wish':     [0],
+  'later':    [2],
+  'sports':   [1],
+  'upcoming': [0],
+};
+const TAB_CARD_FILTER = {
+  'upcoming': (card) => card.querySelector('.cc-new-badge, .tv-thumb-status span') &&
+    (card.querySelector('.tv-thumb-status span')?.textContent || '').includes('D-'),
+};
+
+function applyS5Tab(tabKey) {
+  const rails = document.querySelectorAll('#s5-rails .tv-rail');
+  const allowed = TAB_RAIL_MAP[tabKey] || [0, 1, 2];
+  rails.forEach((rail, i) => {
+    rail.style.display = allowed.includes(i) ? '' : 'none';
+  });
+  // For upcoming tab, hide non-upcoming cards in rail 0
+  if (tabKey === 'upcoming') {
+    const rail0Cards = document.querySelectorAll('#rail1-cards .tv-card');
+    rail0Cards.forEach(card => {
+      const badge = card.querySelector('.tv-thumb-status span');
+      const isUpcoming = badge && (badge.textContent.includes('D-') || badge.textContent.includes('예정'));
+      card.style.display = isUpcoming ? '' : 'none';
+    });
+  } else {
+    document.querySelectorAll('#rail1-cards .tv-card').forEach(c => c.style.display = '');
+  }
+}
+
+document.querySelectorAll('.s5-tab').forEach((tab) => {
   tab.addEventListener('click', () => {
     document.querySelectorAll('.s5-tab').forEach(t => t.classList.remove('active'));
     tab.classList.add('active');
+    applyS5Tab(tab.dataset.tab || 'all');
   });
 });
+
+// S5 Content detail data
+const S5_CONTENT_DETAILS = {};
+
+// S5 Modal
+const s5modal = document.getElementById('s5-modal');
+function openS5Modal(card) {
+  if (!s5modal) return;
+  let detail = {};
+  try { detail = JSON.parse(card.dataset.detail || '{}'); } catch(e) {}
+  if (!detail.title) {
+    const info = (card.dataset.info || '').split('|');
+    detail.title = info[0] || '';
+    detail.meta = info[1] || '';
+  }
+  const pbadge = document.getElementById('s5-modal-pbadge');
+  if (pbadge) { pbadge.textContent = detail.platform || ''; pbadge.className = 'platform-badge ' + (detail.pbClass || ''); }
+  const el = (id, v) => { const e = document.getElementById(id); if (e && v !== undefined) e.textContent = v; };
+  el('s5-modal-title', detail.title);
+  el('s5-modal-meta', detail.meta);
+  el('s5-modal-schedule', '📅 ' + (detail.schedule || ''));
+  el('s5-modal-desc', detail.desc || '');
+  const tagsEl = document.getElementById('s5-modal-tags');
+  if (tagsEl && detail.tags) {
+    tagsEl.innerHTML = detail.tags.split(',').map(t => `<span class="s5-modal-tag">${t.trim()}</span>`).join('');
+  }
+  s5modal.classList.add('open');
+}
+function closeS5Modal() {
+  if (s5modal) s5modal.classList.remove('open');
+}
+if (s5modal) {
+  s5modal.addEventListener('click', (e) => { if (e.target === s5modal) closeS5Modal(); });
+}
+const mc = document.getElementById('s5-modal-close');
+const mc2 = document.getElementById('s5-modal-close2');
+if (mc) mc.addEventListener('click', closeS5Modal);
+if (mc2) mc2.addEventListener('click', closeS5Modal);
+
+// TV card clicks for S5 modal
+document.querySelectorAll('#s5-rails .tv-card').forEach(card => {
+  card.addEventListener('click', () => openS5Modal(card));
+  card.style.cursor = 'pointer';
+});
+
+// ── SCREEN 9: LIVE REPLAN SCENARIOS ──────────────────────────
+let rpCurrentScenario = 1;
+
+const RP_BASE_STATE = {
+  'rp-wed-21': { cls: 'netflix', name: '오징어 게임 S3', sub: 'EP.3 · 52분' },
+  'rp-thu-22': { cls: 'tving', name: '환승연애 4', sub: 'EP.2 · 70분' },
+  'rp-tue-22': { cls: 'youtube', name: 'MrBeast 한국', sub: 'YouTube · 28분' },
+};
+
+function rpSetCell(id, cls, name, sub, anim) {
+  const cell = document.getElementById(id);
+  if (!cell) return;
+  cell.className = 'rp-cell ' + cls + (anim ? ' ' + anim : '');
+  cell.innerHTML = `<div class="rp-cell-name">${name}</div><div class="rp-cell-sub">${sub}</div>`;
+}
+
+function rpHighlight(ids) {
+  document.querySelectorAll('#rp-grid .rp-cell').forEach(c => c.classList.remove('highlight'));
+  ids.forEach(id => { const c = document.getElementById(id); if(c) c.classList.add('highlight'); });
+}
+
+function rpResetGrid() {
+  // Reset to base state
+  document.querySelectorAll('#rp-grid .rp-cell').forEach(c => c.classList.remove('highlight','changed','swapped','shifted'));
+  // Restore cells that scenarios modify
+  rpSetCell('rp-wed-21','netflix','오징어 게임 S3','EP.3 · 52분');
+  rpSetCell('rp-thu-22','tving','환승연애 4','EP.2 · 70분');
+  rpSetCell('rp-tue-22','youtube','MrBeast 한국','YouTube · 28분');
+  rpSetCell('rp-tue-21','netflix','오징어 게임 S3','EP.2 · 52분');
+  rpSetCell('rp-thu-21','empty','—','');
+  rpSetCell('rp-wed-22','tving','환승연애 4','EP.1 · 70분');
+  rpSetCell('rp-fri-19','youtube','재테크 총정리','YouTube · 35분');
+}
+
+function rpSelectScenario(n) {
+  if (rpCurrentScenario === n) return;
+  rpCurrentScenario = n;
+  document.querySelectorAll('.rp-scenario-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.scenario) === n));
+  rpResetGrid();
+
+  const status = document.getElementById('rp-status');
+
+  if (n === 1) {
+    // Scenario 1: 시청 데이터 학습
+    // After watching EP.2, EP.3 gets promoted
+    setTimeout(() => {
+      rpSetCell('rp-tue-21','netflix highlight','오징어 게임 S3','EP.2 · 시청 완료 ✓','changed');
+      rpHighlight(['rp-tue-21']);
+    }, 300);
+    setTimeout(() => {
+      rpSetCell('rp-wed-21','netflix highlight','오징어 게임 S3','EP.3 → 수 21:00 승격','changed');
+      rpHighlight(['rp-wed-21']);
+    }, 900);
+    if (status) {
+      setTimeout(() => {
+        status.innerHTML = '<div class="rp-status-icon">📈</div><div class="rp-status-text"><strong>시청 패턴 학습 → EP.3 자동 승격</strong>화요일 EP.2 완주율 94% 감지 → 수요일 21:00에 EP.3 자동 배치</div>';
+        status.style.background = 'rgba(0,212,106,0.08)';
+        status.style.borderColor = 'rgba(0,212,106,0.25)';
+      }, 900);
+    }
+
+  } else if (n === 2) {
+    // Scenario 2: 신규 콘텐츠 추가 (환승연애 4 추가 → 목 22:30 MrBeast 교체)
+    setTimeout(() => {
+      rpHighlight(['rp-tue-22']);
+    }, 200);
+    setTimeout(() => {
+      rpSetCell('rp-fri-19','tving highlight','환승연애 4','EP.1 → 금 19:00 신규','swapped');
+      rpHighlight(['rp-fri-19']);
+    }, 700);
+    if (status) {
+      setTimeout(() => {
+        status.innerHTML = '<div class="rp-status-icon">✨</div><div class="rp-status-text"><strong>환승연애 4 추가 → 최적 슬롯 자동 배치</strong>70분 러닝타임 분석 → 금요일 19:00 슬롯 (여유 2.5h) 에 교체 완료</div>';
+        status.style.background = 'rgba(0,212,106,0.08)';
+        status.style.borderColor = 'rgba(0,212,106,0.25)';
+      }, 700);
+    }
+
+  } else if (n === 3) {
+    // Scenario 3: 일상 데이터 변동 (오늘 늦은 귀가 감지)
+    setTimeout(() => {
+      rpSetCell('rp-tue-21','empty shifted','늦은 귀가 감지','오늘 시청 불가','shifted');
+      rpSetCell('rp-tue-22','empty shifted','—','');
+    }, 400);
+    setTimeout(() => {
+      rpSetCell('rp-wed-21','netflix highlight','오징어 게임 S3','EP.2 → 내일 이동','changed');
+      rpHighlight(['rp-wed-21']);
+    }, 1000);
+    if (status) {
+      setTimeout(() => {
+        status.innerHTML = '<div class="rp-status-icon">🌙</div><div class="rp-status-text"><strong>Galaxy: 22:10 귀가 감지 → 오늘 편성 자동 조정</strong>오징어 게임 EP.2 내일 수요일로 이동 · 빠른 YouTube 콘텐츠만 유지</div>';
+        status.style.background = 'rgba(255,150,0,0.08)';
+        status.style.borderColor = 'rgba(255,150,0,0.3)';
+        const icon = status.querySelector('.rp-status-icon');
+        if (icon) icon.style.color = '#FF9600';
+        status.style.color = '#FF9600';
+      }, 1000);
+    }
+  }
+}
+
+function initReplanScreen() {
+  rpCurrentScenario = 0;
+  rpResetGrid();
+  const status = document.getElementById('rp-status');
+  if (status) {
+    status.innerHTML = '<div class="rp-status-icon">📊</div><div class="rp-status-text"><strong>시나리오를 선택하면 편성표가 실시간으로 변경됩니다</strong>시청 데이터, 신규 콘텐츠, 생활 패턴 변화에 자동 대응합니다</div>';
+    status.style.background = 'rgba(0,212,106,0.08)';
+    status.style.borderColor = 'rgba(0,212,106,0.25)';
+    status.style.color = 'var(--green)';
+  }
+  rpSelectScenario(1);
+}
 
 // ── SCREEN 8: SCHEDULE NAVIGATION ───────────────────────────
 let schedRow = 0, schedCol = 0;
@@ -3573,6 +4011,17 @@ document.addEventListener('keydown', (e) => {
     if (key === 'ArrowUp')    { schedMove('up');    return; }
   }
 
+  // Escape closes S5 modal
+  if (key === 'Escape' || key === 'Backspace') {
+    if (s5modal && s5modal.classList.contains('open')) { closeS5Modal(); return; }
+  }
+
+  // Enter on S5 rail opens modal
+  if (key === 'Enter' && currentScreen === 5 && railNavActive) {
+    const focused = document.querySelector('#s5-rails .tv-card.focused');
+    if (focused) { openS5Modal(focused); return; }
+  }
+
   // Global navigation
   if (key === 'Enter' || key === 'ArrowRight') {
     if (e.target === document.body || e.target === document.documentElement) {
@@ -3590,11 +4039,11 @@ document.addEventListener('keydown', (e) => {
     const n = parseInt(key);
     if (n <= TOTAL_SCREENS) goToScreen(n);
   }
-  if (key === '0') goToScreen(10);
+  if (key === '0') goToScreen(11);
 });
 
 // ── SAMSUNG TV BARS ───────────────────────────────────────────
-const TV_BAR_SCREENS = [5, 8, 9];
+const TV_BAR_SCREENS = [5, 8, 10];
 
 function updateTVBars(n) {
   const topbar = document.getElementById('tv-topbar');
