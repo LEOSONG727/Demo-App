@@ -4046,7 +4046,7 @@ document.addEventListener('keydown', (e) => {
   if (key === 'Backspace' || key === 'ArrowLeft') {
     if (currentScreen !== 5 && currentScreen !== 8) prevScreen();
   }
-  if (key === ' ') { e.preventDefault(); nextScreen(); }
+  if (key === ' ') { e.preventDefault(); if (currentScreen !== 9) nextScreen(); }
 
   // Number keys for direct navigation
   if (key >= '1' && key <= '9') {
@@ -4125,7 +4125,9 @@ document.addEventListener('click', (e) => {
       e.target.closest('.content-card') || e.target.closest('.tv-card') ||
       e.target.closest('.sg-cell') || e.target.closest('#tv-topbar') ||
       e.target.closest('#tv-appbar') || e.target.closest('.btn-primary') ||
-      e.target.closest('.watch-btn')) return;
+      e.target.closest('.watch-btn') || e.target.closest('.rp-scenario-btn') ||
+      e.target.closest('.aw-btn-cancel') || e.target.closest('.aw-btn-dismiss') ||
+      e.target.closest('.s5-modal-card')) return;
   nextScreen();
 });
 
