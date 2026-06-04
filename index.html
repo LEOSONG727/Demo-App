@@ -481,7 +481,7 @@ body { font-family: var(--font-kr); color: var(--text); }
   position: relative; width: 900px; height: 380px;
 }
 .tv-center {
-  position: absolute; left: 350px; top: 120px;
+  position: absolute; left: 350px; top: 148px;
   width: 200px; height: 140px; border: 3px solid var(--blue-light);
   border-radius: 12px; background: var(--bg);
   display: flex; flex-direction: column; align-items: center; justify-content: center;
@@ -1204,14 +1204,26 @@ body { font-family: var(--font-kr); color: var(--text); }
 .aw-title { font-size: 32px; font-weight: 900; letter-spacing: -0.02em; }
 .aw-desc { font-size: 18px; color: var(--text2); line-height: 1.6; }
 .aw-btn {
-  display: flex; gap: 12px; margin-top: 8px;
+  display: flex; gap: 10px; margin-top: 8px; flex-wrap: wrap;
 }
-.aw-btn .btn-primary { padding: 16px 36px; font-size: 17px; }
-.aw-btn .btn-cancel {
-  padding: 16px 36px; background: transparent; border: 1.5px solid var(--border2);
-  border-radius: 12px; color: var(--text2); font-size: 17px; font-weight: 700;
-  cursor: pointer; font-family: var(--font-kr);
+.aw-btn .btn-primary { padding: 15px 32px; font-size: 17px; flex-shrink: 0; }
+.aw-btn-cancel {
+  padding: 15px 22px; background: rgba(255,255,255,0.07);
+  border: 1.5px solid rgba(255,255,255,0.18);
+  border-radius: 12px; color: var(--text2); font-size: 15px; font-weight: 700;
+  cursor: pointer; font-family: var(--font-kr); letter-spacing: -0.01em;
+  transition: background 0.2s, border-color 0.2s;
 }
+.aw-btn-cancel:hover { background: rgba(255,255,255,0.13); color: #fff; border-color: rgba(255,255,255,0.35); }
+.aw-btn-cancel.focused { border-color: rgba(255,255,255,0.45); box-shadow: 0 0 0 2px rgba(255,255,255,0.15); }
+.aw-btn-dismiss {
+  padding: 15px 22px; background: rgba(255,60,60,0.08);
+  border: 1.5px solid rgba(255,60,60,0.22);
+  border-radius: 12px; color: rgba(255,120,120,0.85); font-size: 15px; font-weight: 700;
+  cursor: pointer; font-family: var(--font-kr); letter-spacing: -0.01em;
+  transition: background 0.2s, border-color 0.2s;
+}
+.aw-btn-dismiss:hover { background: rgba(255,60,60,0.15); border-color: rgba(255,60,60,0.4); color: #ff9090; }
 .aw-auto-text {
   font-size: 13px; color: var(--text3); font-family: var(--font-en);
   opacity: 0; animation: fadeIn 0.5s 2.5s both;
@@ -2065,16 +2077,16 @@ body { font-family: var(--font-kr); color: var(--text); }
     <div class="connection-stage">
       <!-- SVG Lines -->
       <svg class="conn-svg" viewBox="0 0 900 380" xmlns="http://www.w3.org/2000/svg">
-        <line id="l-netflix" x1="105" y1="96"  x2="350" y2="150" class="conn-line"/>
-        <line id="l-youtube" x1="105" y1="266" x2="350" y2="230" class="conn-line"/>
-        <line id="l-disney"  x1="795" y1="96"  x2="550" y2="150" class="conn-line"/>
-        <line id="l-tving"   x1="795" y1="266" x2="550" y2="230" class="conn-line"/>
-        <line id="l-kbo"     x1="450" y1="44"  x2="450" y2="120" class="conn-line"/>
-        <circle id="d-netflix" class="conn-dot" cx="350" cy="150" r="5"/>
-        <circle id="d-youtube" class="conn-dot" cx="350" cy="230" r="5"/>
-        <circle id="d-disney"  class="conn-dot" cx="550" cy="150" r="5"/>
-        <circle id="d-tving"   class="conn-dot" cx="550" cy="230" r="5"/>
-        <circle id="d-kbo"     class="conn-dot" cx="450" cy="120" r="5"/>
+        <line id="l-netflix" x1="105" y1="96"  x2="350" y2="178" class="conn-line"/>
+        <line id="l-youtube" x1="105" y1="266" x2="350" y2="258" class="conn-line"/>
+        <line id="l-disney"  x1="795" y1="96"  x2="550" y2="178" class="conn-line"/>
+        <line id="l-tving"   x1="795" y1="266" x2="550" y2="258" class="conn-line"/>
+        <line id="l-kbo"     x1="450" y1="44"  x2="450" y2="148" class="conn-line"/>
+        <circle id="d-netflix" class="conn-dot" cx="350" cy="178" r="5"/>
+        <circle id="d-youtube" class="conn-dot" cx="350" cy="258" r="5"/>
+        <circle id="d-disney"  class="conn-dot" cx="550" cy="178" r="5"/>
+        <circle id="d-tving"   class="conn-dot" cx="550" cy="258" r="5"/>
+        <circle id="d-kbo"     class="conn-dot" cx="450" cy="148" r="5"/>
       </svg>
 
       <!-- TV Center -->
@@ -3155,7 +3167,9 @@ body { font-family: var(--font-kr); color: var(--text); }
       </div>
       <div class="aw-btn">
         <button class="btn-primary focused">▶ 바로 시청</button>
-        <button class="aw-cancel">15분 후에</button>
+        <button class="aw-btn-cancel">⏱ 15분 후에</button>
+        <button class="aw-btn-cancel">🔔 경기 시작만 알림</button>
+        <button class="aw-btn-dismiss">오늘 경기 제외</button>
       </div>
       <div class="aw-auto-text">5초 후 자동으로 채널이 전환됩니다</div>
       <div class="aw-progress-bar"><div class="fill"></div></div>
