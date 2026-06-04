@@ -1093,6 +1093,14 @@ body { font-family: var(--font-kr); color: var(--text); }
 .rp-status-icon { font-size: 18px; }
 .rp-status-text { line-height: 1.4; }
 .rp-status-text strong { display: block; font-size: 15px; margin-bottom: 2px; }
+.rp-step-nav { margin-top: 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.rp-step-dots { display: flex; align-items: center; gap: 6px; }
+.rp-step-dot { width: 9px; height: 9px; border-radius: 50%; background: rgba(255,255,255,0.12); border: 1px solid rgba(255,255,255,0.2); transition: all 0.35s; }
+.rp-step-dot.active { background: var(--blue-bright); border-color: var(--blue-bright); box-shadow: 0 0 10px rgba(77,127,255,0.6); transform: scale(1.2); }
+.rp-step-dot.done { background: var(--green); border-color: var(--green); }
+.rp-step-line { width: 28px; height: 1px; background: rgba(255,255,255,0.12); }
+.rp-step-hint { font-size: 11px; color: var(--text3); font-family: var(--font-en); letter-spacing: 0.05em; text-align: center; transition: color 0.3s; }
+.rp-step-hint.last { color: var(--blue-bright); }
 
 /* ═══════════════════════════════════════════════════════════════
    SCREEN 10: TODAY'S VIEW
@@ -3011,6 +3019,16 @@ body { font-family: var(--font-kr); color: var(--text); }
           <div class="rp-sc-title">일상 데이터 변동</div>
           <div class="rp-sc-desc">늦은 귀가·회식 감지 시 당일 편성을 자동 조정</div>
         </div>
+        <div class="rp-step-nav">
+          <div class="rp-step-dots">
+            <span class="rp-step-dot active" id="rp-dot-1"></span>
+            <span class="rp-step-line"></span>
+            <span class="rp-step-dot" id="rp-dot-2"></span>
+            <span class="rp-step-line"></span>
+            <span class="rp-step-dot" id="rp-dot-3"></span>
+          </div>
+          <div class="rp-step-hint" id="rp-step-hint">CLICK · SPACE → 다음 시나리오</div>
+        </div>
       </div>
 
       <!-- Right: Schedule grid + status -->
@@ -3635,6 +3653,31 @@ document.querySelectorAll('#s5-rails .tv-card').forEach(card => {
 
 // ── SCREEN 9: LIVE REPLAN SCENARIOS ──────────────────────────
 let rpCurrentScenario = 1;
+let s9Step = 1;
+
+function updateS9StepDots(step) {
+  for (let i = 1; i <= 3; i++) {
+    const dot = document.getElementById('rp-dot-' + i);
+    if (!dot) continue;
+    dot.classList.remove('active', 'done');
+    if (i < step) dot.classList.add('done');
+    else if (i === step) dot.classList.add('active');
+  }
+  const hint = document.getElementById('rp-step-hint');
+  if (hint) {
+    if (step >= 3) { hint.textContent = 'CLICK · SPACE → 다음 페이지 ›'; hint.classList.add('last'); }
+    else { hint.textContent = 'CLICK · SPACE → 다음 시나리오'; hint.classList.remove('last'); }
+  }
+}
+
+function s9Advance() {
+  if (s9Step < 3) {
+    s9Step++;
+    rpSelectScenario(s9Step);
+  } else {
+    nextScreen();
+  }
+}
 
 const RP_BASE_STATE = {
   'rp-wed-21': { cls: 'netflix', name: '오징어 게임 S3', sub: 'EP.3 · 52분' },
@@ -3670,6 +3713,8 @@ function rpResetGrid() {
 function rpSelectScenario(n) {
   if (rpCurrentScenario === n) return;
   rpCurrentScenario = n;
+  s9Step = n;
+  updateS9StepDots(n);
   document.querySelectorAll('.rp-scenario-btn').forEach(b => b.classList.toggle('active', parseInt(b.dataset.scenario) === n));
   rpResetGrid();
 
@@ -3736,6 +3781,7 @@ function rpSelectScenario(n) {
 
 function initReplanScreen() {
   rpCurrentScenario = 0;
+  s9Step = 1;
   rpResetGrid();
   const status = document.getElementById('rp-status');
   if (status) {
@@ -4046,7 +4092,7 @@ document.addEventListener('keydown', (e) => {
   if (key === 'Backspace' || key === 'ArrowLeft') {
     if (currentScreen !== 5 && currentScreen !== 8) prevScreen();
   }
-  if (key === ' ') { e.preventDefault(); if (currentScreen !== 9) nextScreen(); }
+  if (key === ' ') { e.preventDefault(); if (currentScreen === 9) s9Advance(); else nextScreen(); }
 
   // Number keys for direct navigation
   if (key >= '1' && key <= '9') {
@@ -4121,11 +4167,16 @@ function railMove(dir) {
 
 // Also handle clicks for next screen
 document.addEventListener('click', (e) => {
+  // S9: scenario buttons do direct jump (onclick), anything else advances step
+  if (currentScreen === 9) {
+    if (!e.target.closest('.rp-scenario-btn')) s9Advance();
+    return;
+  }
   if (e.target.closest('#nav-hud') || e.target.closest('.s5-tab') ||
       e.target.closest('.content-card') || e.target.closest('.tv-card') ||
       e.target.closest('.sg-cell') || e.target.closest('#tv-topbar') ||
       e.target.closest('#tv-appbar') || e.target.closest('.btn-primary') ||
-      e.target.closest('.watch-btn') || e.target.closest('.rp-scenario-btn') ||
+      e.target.closest('.watch-btn') ||
       e.target.closest('.aw-btn-cancel') || e.target.closest('.aw-btn-dismiss') ||
       e.target.closest('.s5-modal-card')) return;
   nextScreen();
